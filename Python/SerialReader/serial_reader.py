@@ -9,7 +9,7 @@ s = [0, 1]
 
 
 def save_data(read_list):
-    con = lite.connect('sensorsData.db')
+    con = lite.connect('../sensorsData.db')
     with con:
         cur = con.cursor()
         query = "INSERT INTO DHT_data VALUES(datetime('now')," + read_list[0] + "," + read_list[1] + "," + read_list[

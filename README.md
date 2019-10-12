@@ -1,5 +1,12 @@
 # Sleep Monitor
 This is a simple project that uses Arduino and a Linux-based Single-Board computer to monitor ambient variables that influence your sleep quality. With this information the system can send alarms with insight about your sleeping ambient in order to improve it.
+
+## Table of Contents
+
+- [Getting Started](#getting-started)
+- [Prequisites](#prequsites)
+- [Usage](#usage)
+
 ## Getting Started
 This is a list of things you will need in order to use this code
  * An Arduino Board (Uno or Nano will do just fine)
@@ -18,8 +25,23 @@ After that you will need to connect via USB your Arduino to your SBC.
 * First you must install SQLite3 in your computer. To do so run the following commands, that will install SQLite3 on your SBC.
     * `sudo apt-get install sqlite3`
     * `sudo apt-get install sqlitebrowser`
-* Then you will need to run the requierement 
-    
-On that SBC you must start two Python scripts: `app.py` and `serial_reader.py`   
+* Then you will need to run the requirements.txt file. To do that remember to set a virtual enviorment for this app. Then, inside the venv just run `pip install --user --requirement requirements.txt`. This will leave all the required libraries for the project to work readily installed in your virtual environment.
+* After that you must run three different Python scripts in your SBC:
+    * `create_database.py`
+    * `serial_reader.py`
+    * `app.py`
  
+ That's it for the perquisites part! 
+ 
+ ## Usage
+ Now to the interesting part: how do you use this?
+ 
+ First, we must pay attention to the IP direction and the port on which the app is running. This will route us to the project from any local network connected device.
+ 
+ The first thing you can do is see the actual state of the environment. The colour of the value representing each value tells you how ideal is that value for sleeping
+ * Green is ideal
+ * Yellow is not so bad
+ * Red is not a recommendable value
+ 
+ You can also see three tables that show you a history of all three variables.      
   

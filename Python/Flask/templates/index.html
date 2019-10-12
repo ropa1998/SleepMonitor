@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
     <a class="navbar-brand" href="#">Sleep Monitor</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,7 @@
 </nav>
 
 <div class="main">
-    <h1>DHT Sensor Data </h1>
+    <h1>Sensors Data</h1>
     <div class="readings">
         <div class="row">
             <div class="col-sm">
@@ -45,14 +45,16 @@
 </div>
 
 <hr>
-<h3> Last Sensors Reading: {{ time }} ==> <a href="/" class="button">REFRESH</a></h3>
+<h3> Last Sensors Reading: {{ time }}
+    <button type="button" class="btn btn-primary" href="/">REFRESH</button>
+</h3>
 <hr>
 
-<h3> HISTORICAL DATA </h3>
+<h3> Historical Data </h3>
 <p> Enter number of samples to retrieve:
 <form method="POST">
     <input name="numSamples" value={{numSamples}}>
-    <input type="submit">
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </p>
 <hr>

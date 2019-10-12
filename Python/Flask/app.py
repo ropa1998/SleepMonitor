@@ -17,8 +17,9 @@ def getLastData():
             time = str(row[0])
             temp = row[1]
             hum = row[2]
+            light = row[3]
     # conn.close()
-    return time, temp, hum
+    return time, temp, hum, light
 
 
 def getHistData(numSamples):
@@ -30,11 +31,13 @@ def getHistData(numSamples):
         dates = []
         temps = []
         hums = []
+        lights = []
         for row in reversed(data):
             dates.append(row[0])
             temps.append(row[1])
             hums.append(row[2])
-        return dates, temps, hums
+            lights.append(row[3])
+        return dates, temps, hums, lights
 
 
 def maxRowsTable():
@@ -56,11 +59,12 @@ if (numSamples > 101):
 # main route
 @app.route("/")
 def index():
-    time, temp, hum = getLastData()
+    time, temp, hum, light = getLastData()
     templateData = {
         'time': time,
         'temp': temp,
         'hum': hum,
+        'light': light,
         'numSamples': numSamples
     }
     return render_template('index.html', **templateData)
@@ -74,20 +78,25 @@ def my_form_post():
     if (numSamples > numMaxSamples):
         numSamples = (numMaxSamples - 1)
 
-    time, temp, hum = getLastData()
+    time, temp, hum, light = getLastData()
 
     templateData = {
         'time': time,
         'temp': temp,
         'hum': hum,
+        'light': light,
         'numSamples': numSamples
     }
     return render_template('index.html', **templateData)
 
 
+# TODO refactor all plots in one method.
+# TODO cambiar "Samples" por timestamp. Formatear para que quede lindo.
+# TODO armar documentacion de Arduino, Python, y Base de Datos
+# TODO dejar mas lindo el HTML
 @app.route('/plot/temp')
 def plot_temp():
-    times, temps, hums = getHistData(numSamples)
+    times, temps, hums, lights = getHistData(numSamples)
     ys = temps
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
@@ -106,11 +115,30 @@ def plot_temp():
 
 @app.route('/plot/hum')
 def plot_hum():
-    times, temps, hums = getHistData(numSamples)
+    times, temps, hums, lights = getHistData(numSamples)
     ys = hums
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
     axis.set_title("Humidity [%]")
+    axis.set_xlabel("Samples")
+    axis.grid(True)
+    xs = range(numSamples)
+    axis.plot(xs, ys)
+    canvas = FigureCanvas(fig)
+    output = io.BytesIO()
+    canvas.print_png(output)
+    response = make_response(output.getvalue())
+    response.mimetype = 'image/png'
+    return response
+
+
+@app.route('/plot/light')
+def plot_light():
+    times, temps, hums, lights = getHistData(numSamples)
+    ys = lights
+    fig = Figure()
+    axis = fig.add_subplot(1, 1, 1)
+    axis.set_title("Light [Lux]")
     axis.set_xlabel("Samples")
     axis.grid(True)
     xs = range(numSamples)

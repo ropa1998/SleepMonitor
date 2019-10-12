@@ -21,7 +21,4 @@ def save_data(read_list):
 while True:
     read_serial = str(ser.readline().rstrip()).replace("'", "").replace("b", "")
     read_list = read_serial.split(",")
-    # temp = float(read_list[0])
-    # humidity = float(read_list[1])
-    # light = float(read_list[2])
     save_data(read_list)

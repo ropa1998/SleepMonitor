@@ -44,4 +44,15 @@ After that you will need to connect via USB your Arduino to your SBC.
  * Red is not a recommendable value
  
  You can also see three tables that show you a history of all three variables.      
-  
+
+
+### Contributors
+
+This project exists thanks to all the people who contribute. 
+* [Franz Soto Leal](https://github.com/FranzSL)
+* [Rodrigo Pazos](https://github.com/ropa1998) 
+
+
+## License
+
+[MIT](LICENSE)

@@ -16,24 +16,29 @@ void setup() {
 }
 
 void loop() {
- delay(dly);
- Serial.print(getTemp());
- Serial.print(getLight());
- Serial.print("\n");
+  delay(dly);
+  Serial.print(getTemp() + "," + getHumd() +  "," + getLight());
+  Serial.print("\n");
 }
 
-String getTemp(){
-   //Temperatura y humedad
-  float h = dht.readHumidity();
+String getTemp() {
+
   float t = dht.readTemperature();
-  return "Humidity: " + String(h) +"\n" + "Temperature in C: " + String(t) + "\n"; 
-  //Termina temperatura y humedad
+  return String(t);
+  
 }
 
-String getLight(){
+String getHumd() {
+
+  float h = dht.readHumidity();
+  return String(h);
+  
+}
+
+String getLight() {
   int LDR = analogRead(LDRPIN); // read the value from the sensor
   double Vout = (LDR * 0.0048828125);
   double RLDR = (R1 * (5 - Vout)) / Vout;
   double Lux = (500 / RLDR);
-  return "Light: " + String(Lux*100);
+  return String(Lux * 100);
 }

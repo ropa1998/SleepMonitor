@@ -5,7 +5,7 @@
     <title>Sleep Monitor </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
@@ -36,17 +36,17 @@
     <p class="lead"> Last Sensors Reading: {{ time }}
         <button type="button" class="btn btn-outline-primary" href="/">REFRESH</button>
     </p>
-<div style="height:25px"></div>
+    <div style="height:25px"></div>
     <div class="container">
         <div class="readings">
             <div class="row">
-                <div class="col-sm">
+                <div class="col-md">
                     <h3>Temperature: {{ temp }} oC</h3>
                 </div>
-                <div class="col-sm">
+                <div class="col-md">
                     <h3>Humidity: {{ hum }} %</h3>
                 </div>
-                <div class="col-sm">
+                <div class="col-md">
                     <h3>Light: {{ light }} lux</h3>
                 </div>
 
@@ -57,20 +57,34 @@
 
 
 <div style="background-color:#fff; padding-left:50px">
-<h3> Historical Data </h3>
-<p> Enter number of samples to retrieve:</p>
-<form method="POST">
-    <input name="numSamples" value={{numSamples}}>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <h3> Historical Data </h3>
+    <p> Enter number of samples to retrieve:</p>
+    <form method="POST">
+        <input name="numSamples" value={{numSamples}}>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
-<hr>
+    <hr>
 </div>
-<img src="/plot/temp" alt="Image Placeholder" width="49%">
-<img src="/plot/hum" alt="Image Placeholder" width="49%">
-<img src="/plot/light" alt="Image Placeholder" width="49%">
 
+<div class="row" style="margin:auto">
+    <div class="col-md-6"><img src="/plot/temp" alt="Image Placeholder" width="100%">
+    </div>
+    <div class="col-md-6"><img src="/plot/hum" alt="Image Placeholder" width="100%">
+    </div>
+    <div class="col-md-6"><img src="/plot/light" alt="Image Placeholder" width="100%">
+    </div>
+</div>
 
+<footer class="text-muted bg-light" style=" padding-top: 3rem;
+    padding-bottom: 3rem;">
+    <div class="container">
+        <p class="float-right">
+            <a href="#">Back to top</a>
+        </p>
+        <p>©2019 Sleepmonitor Inc.</p>
+    </div>
+</footer>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <head>
-    <title>DHT Sensor data </title>
-    <link rel="stylesheet" href='../static/style.css'/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sleep Monitor </title>
+    <link rel="stylesheet" href='style.css'/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-<h1>DHT Sensor Data </h1>
-<h3> TEMPERATURE &nbsp; ==> {{ temp }} oC</h3>
-<h3> HUMIDITY (Rel.) ==> {{ hum }} %</h3>
-<h3> LIGHT ==> {{ light }} lux</h3>
-<hr>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Sleep Monitor</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="container-inline">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sign In</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
+<div class="main">
+    <h1>DHT Sensor Data </h1>
+    <div class="readings">
+        <div class="row">
+            <div class="col-sm">
+                <h3> Temperature:{{ temp }} oC</h3>
+            </div>
+            <div class="col-sm">
+                <h3> Humidity: (Rel.) ==> {{ hum }} %</h3>
+            </div>
+            <h3> Light: {{ light }} lux</h3>
+        </div>
+    </div>
+</div>
+
+<hr>
 <h3> Last Sensors Reading: {{ time }} ==> <a href="/" class="button">REFRESH</a></h3>
 <hr>
 
@@ -25,8 +59,17 @@
 <img src="/plot/temp" alt="Image Placeholder" width="49%">
 <img src="/plot/hum" alt="Image Placeholder" width="49%">
 <img src="/plot/light" alt="Image Placeholder" width="49%">
+</div>
 
-<p> @2018 Developed by MJRoBot.org</p>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

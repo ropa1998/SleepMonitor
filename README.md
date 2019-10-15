@@ -26,10 +26,9 @@ After that you will need to connect via USB your Arduino to your SBC.
     * `sudo apt-get install sqlite3`
     * `sudo apt-get install sqlitebrowser`
 * Then you will need to run the requirements.txt file. To do that remember to set a virtual enviorment for this app. Then, inside the venv just run `pip install --user --requirement requirements.txt`. This will leave all the required libraries for the project to work readily installed in your virtual environment.
-* After that you must run three different Python scripts in your SBC:
+* After that you must run two different Python scripts in your SBC:
     * `create_database.py`
     * `serial_reader.py`
-    * `app.py`
  
  That's it for the perquisites part! 
  

@@ -40,7 +40,7 @@ After that you will need to connect via USB your Arduino to your SBC.
  
  You must learn, by the tool of your choice (we recommend net-tools), your IP direction in your local network.
  
- After that you must run two commands: 
+ After that you must run two commands (from the project venv): 
  
  `export FLASK_APP=hello.py`
  

@@ -4,9 +4,6 @@ import sys
 
 import serial
 
-ser = serial.Serial('/dev/ttyUSB0', 9600)
-s = [0, 1]
-
 
 def save_data(read_list):
     con = lite.connect('../sensorsData.db')
@@ -17,6 +14,8 @@ def save_data(read_list):
         print(query)
         cur.execute(query)
 
+
+ser = serial.Serial('/dev/ttyUSB0', 9600)
 
 while True:
     read_serial = str(ser.readline().rstrip()).replace("'", "").replace("b", "")

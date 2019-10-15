@@ -38,6 +38,18 @@ After that you will need to connect via USB your Arduino to your SBC.
  
  First, we must pay attention to the IP direction and the port on which the app is running. This will route us to the project from any local network connected device.
  
+ You must learn, by the tool of your choice (we recommend net-tools), your IP direction in your local network.
+ 
+ After that you must run two commands: 
+ 
+ `export FLASK_APP=hello.py`
+ 
+ `flask run --host=0.0.0.0`
+ 
+ This will allow you to use the project in your local network: you will need to access, from any local network connected device, the IP <SBC-IP>:5000, which will show you the project working.
+ 
+ ![Sample main page](https://raw.githubusercontent.com/ropa1998/SleepMonitor/master/Images/sample_page.png)
+ 
  The first thing you can do is see the actual state of the environment. The colour of the value representing each value tells you how ideal is that value for sleeping
  * Green is ideal
  * Yellow is not so bad

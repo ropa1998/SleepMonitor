@@ -41,13 +41,13 @@
         <div class="readings">
             <div class="row">
                 <div class="col-md">
-                    <h3>Temperature: {{ temp }} oC</h3>
+                    <h3>Temperature <div id="tempDiv"><span id="lastTemp">{{ temp }}</span> oC</div></h3>
                 </div>
                 <div class="col-md">
-                    <h3>Humidity: {{ hum }} %</h3>
+                    <h3>Humidity <div id="humDiv"><span id="lastHum">{{ hum }}</span> %</div></h3>
                 </div>
                 <div class="col-md">
-                    <h3>Light: {{ light }} lux</h3>
+                    <h3>Light <div id="luxDiv"><span id="lastLux">{{ light }}</span>  lux</div></h3>
                 </div>
 
             </div>
@@ -97,5 +97,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script type="text/javascript"
+         src="{{ url_for('static', filename='info.js') }}"></script>
 </body>
 </html>

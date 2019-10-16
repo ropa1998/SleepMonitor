@@ -105,7 +105,7 @@ def my_form_post():
         'light': light,
         'numSamples': numSamples
     }
-    return render_template('index.html', **templateData)
+    return render_template('info.html', **templateData)
 
 
 # TODO refactor all plots in one method.
@@ -122,9 +122,11 @@ def plot_temp():
     axis.grid(True)
     xs = range(numSamples)
     axis.plot(xs, ys)
-    # axis.axhspan(16, 25, facecolor='red', alpha=0.5)
-    # axis.axhspan(11, 16, facecolor='green', alpha=0.5)
+    # axis.axhspan(25, 40, facecolor='red', alpha=0.5)
     # axis.axhspan(20, 25, facecolor='yellow', alpha=0.5)
+    # axis.axhspan(16, 20, facecolor='yellowgreen', alpha=0.5)
+    # axis.axhspan(11, 16, facecolor='yellow', alpha=0.5)
+    # axis.axhspan(0, 16, facecolor='red', alpha=0.3)
     canvas = FigureCanvas(fig)
     output = io.BytesIO()
     canvas.print_png(output)

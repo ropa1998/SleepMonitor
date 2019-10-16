@@ -93,7 +93,6 @@ def my_form_post():
 # TODO refactor all plots in one method.
 # TODO cambiar "Samples" por timestamp. Formatear para que quede lindo.
 # TODO armar documentacion de Arduino, Python, y Base de Datos
-# TODO dejar mas lindo el HTML
 @app.route('/plot/temp')
 def plot_temp():
     times, temps, hums, lights = getHistData(numSamples)

@@ -1,9 +1,9 @@
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
 import io
 import sqlite3 as lite
 
-from flask import Flask, render_template, send_file, make_response, request
+from flask import Flask, render_template, make_response, request, redirect, flash, url_for
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
 
 app = Flask(__name__)
 
@@ -59,6 +59,24 @@ if (numSamples > 101):
 # main route
 @app.route("/")
 def index():
+    return render_template('index.html')
+
+
+@app.route("/", methods=['POST'])
+def login_post():
+    email = request.form.get('username')
+    password = request.form.get('password')
+
+    # TODO: improve this?
+    if email == 'admin' and password == 'admin':
+        return redirect(url_for('info'))
+    else:
+        flash('Invalid credentials')
+        return redirect(url_for('index'))
+
+
+@app.route("/info")
+def info():
     time, temp, hum, light = getLastData()
     templateData = {
         'time': time,
@@ -67,10 +85,10 @@ def index():
         'light': light,
         'numSamples': numSamples
     }
-    return render_template('index.html', **templateData)
+    return render_template('info.html', **templateData)
 
 
-@app.route('/', methods=['POST'])
+@app.route('/info', methods=['POST'])
 def my_form_post():
     global numSamples
     numSamples = int(request.form['numSamples'])
@@ -104,6 +122,9 @@ def plot_temp():
     axis.grid(True)
     xs = range(numSamples)
     axis.plot(xs, ys)
+    # axis.axhspan(16, 25, facecolor='red', alpha=0.5)
+    # axis.axhspan(11, 16, facecolor='green', alpha=0.5)
+    # axis.axhspan(20, 25, facecolor='yellow', alpha=0.5)
     canvas = FigureCanvas(fig)
     output = io.BytesIO()
     canvas.print_png(output)
@@ -123,6 +144,10 @@ def plot_hum():
     axis.grid(True)
     xs = range(numSamples)
     axis.plot(xs, ys)
+    # print(max(temps))
+    # axis.axhspan(40, 45, facecolor='#FFFF33', alpha=0.5)
+    # axis.axhspan(45, 55, facecolor='#90EE90', alpha=0.5)
+    # axis.axhspan(55, 60, facecolor='#FFFF33', alpha=0.5)
     canvas = FigureCanvas(fig)
     output = io.BytesIO()
     canvas.print_png(output)
@@ -151,4 +176,7 @@ def plot_light():
 
 
 if __name__ == '__main__':
+    app.secret_key = 'super secret key'
+    app.config['SESSION_TYPE'] = 'filesystem'
+
     app.run(debug=True)

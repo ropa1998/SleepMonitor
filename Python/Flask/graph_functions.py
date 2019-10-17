@@ -2,6 +2,35 @@ from matplotlib.figure import Figure
 
 from Python.Flask.db_manager import getDataAsTuple
 
+TEMP_GREEN_LOW = 16
+TEMP_GREEN_HIGH = 20
+TEMP_INFERIOR_YELLOW_LOW = 11
+TEMP_INFERIOR_YELLOW_HIGH = 16
+TEMP_SUPERIOR_YELLOW_LOW = 20
+TEMP_SUPERIOR_YELLOW_HIGH = 25
+TEMP_INFERIOR_RED_LOW = 0
+TEMP_INFERIOR_RED_HIGH = 11
+TEMP_SUPERIOR_RED_LOW = 25
+TEMP_SUPERIOR_RED_HIGH = 35
+
+LIGHT_GREEN_LOW = 0
+LIGHT_GREEN_HIGH = 5
+LIGHT_YELLOW_LOW = 5
+LIGHT_YELLOW_HIGH = 10
+LIGHT_RED_LOW = 10
+LIGHT_RED_HIGH = 20
+
+HUM_GREEN_LOW = 45
+HUM_GREEN_HIGH = 55
+HUM_INFERIOR_YELLOW_LOW = 40
+HUM_INFERIOR_YELLOW_HIGH = 45
+HUM_SUPERIOR_YELLOW_LOW = 55
+HUM_SUPERIOR_YELLOW_HIGH = 60
+HUM_INFERIOR_RED_LOW = 30
+HUM_INFERIOR_RED_HIGH = 40
+HUM_SUPERIOR_RED_LOW = 60
+HUM_SUPERIOR_RED_HIGH = 100
+
 
 def plot_temp_with_data(data):
     times, temps, hums, lights = getDataAsTuple(data)
@@ -15,11 +44,11 @@ def plot_temp_with_data(data):
     axis.set_ylim([min(ys) - 5, max(ys) + 5])
     xs = range(length)
     axis.plot(xs, ys)
-    axis.axhspan(25, 35, facecolor='red', alpha=0.3)
-    axis.axhspan(20, 25, facecolor='yellow', alpha=0.5)
-    axis.axhspan(16, 20, facecolor='green', alpha=0.3)
-    axis.axhspan(11, 16, facecolor='yellow', alpha=0.5)
-    axis.axhspan(0, 11, facecolor='red', alpha=0.3)
+    axis.axhspan(TEMP_SUPERIOR_RED_LOW, TEMP_SUPERIOR_RED_HIGH, facecolor='red', alpha=0.3)
+    axis.axhspan(TEMP_SUPERIOR_YELLOW_LOW, TEMP_SUPERIOR_YELLOW_HIGH, facecolor='yellow', alpha=0.5)
+    axis.axhspan(TEMP_GREEN_LOW, TEMP_GREEN_HIGH, facecolor='green', alpha=0.3)
+    axis.axhspan(TEMP_INFERIOR_YELLOW_LOW, TEMP_INFERIOR_YELLOW_HIGH, facecolor='yellow', alpha=0.5)
+    axis.axhspan(TEMP_INFERIOR_RED_LOW, TEMP_INFERIOR_RED_HIGH, facecolor='red', alpha=0.3)
     return fig
 
 
@@ -35,11 +64,11 @@ def plot_hum_with_data(data):
     axis.set_ylim([min(ys) - 5, max(ys) + 5])
     xs = range(length)
     axis.plot(xs, ys)
-    axis.axhspan(30, 40, facecolor='red', alpha=0.3)
-    axis.axhspan(40, 45, facecolor='yellow', alpha=0.5)
-    axis.axhspan(45, 55, facecolor='green', alpha=0.3)
-    axis.axhspan(55, 60, facecolor='yellow', alpha=0.5)
-    axis.axhspan(60, max(ys) + 5 if max(ys) > 60 else 70, facecolor='red', alpha=0.3)
+    axis.axhspan(HUM_INFERIOR_RED_LOW, HUM_INFERIOR_RED_HIGH, facecolor='red', alpha=0.3)
+    axis.axhspan(HUM_INFERIOR_YELLOW_LOW, HUM_SUPERIOR_YELLOW_HIGH, facecolor='yellow', alpha=0.5)
+    axis.axhspan(HUM_GREEN_LOW, HUM_GREEN_HIGH, facecolor='green', alpha=0.3)
+    axis.axhspan(HUM_SUPERIOR_YELLOW_LOW, HUM_SUPERIOR_YELLOW_HIGH, facecolor='yellow', alpha=0.5)
+    axis.axhspan(HUM_SUPERIOR_RED_LOW, max(ys) + 5 if max(ys) > 60 else 70, facecolor='red', alpha=0.3)
     return fig
 
 
@@ -55,7 +84,7 @@ def plot_light_with_data(data):
     axis.set_ylim([min(ys) - 5, max(ys) + 5])
     xs = range(length)
     axis.plot(xs, ys)
-    axis.axhspan(0, 5, facecolor='green', alpha=0.3)
-    axis.axhspan(5, 10, facecolor='yellow', alpha=0.5)
-    axis.axhspan(10, max(ys) if max(ys) > 10 else 20, facecolor='red', alpha=0.3)
+    axis.axhspan(LIGHT_GREEN_LOW, LIGHT_GREEN_HIGH, facecolor='green', alpha=0.3)
+    axis.axhspan(LIGHT_YELLOW_LOW, LIGHT_YELLOW_HIGH, facecolor='yellow', alpha=0.5)
+    axis.axhspan(LIGHT_RED_LOW, max(ys) if max(ys) > 10 else 20, facecolor='red', alpha=0.3)
     return fig

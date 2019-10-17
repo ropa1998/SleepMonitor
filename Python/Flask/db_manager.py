@@ -7,7 +7,7 @@ def getHistData(numSamples):
         curs = con.cursor()
         curs.execute("SELECT * FROM DHT_data ORDER BY timestamp DESC LIMIT " + str(numSamples))
         data = curs.fetchall()
-        getDataAsTuple(data)
+        return data
 
 
 def getDataAsTuple(data):

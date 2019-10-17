@@ -4,7 +4,7 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
 from SleepMonitor.Python.Flask.db_manager import getLastData, maxRowsTable, getHistData
-from SleepMonitor.Python.Flask.graph_functions import plot_temp_with_data
+from SleepMonitor.Python.Flask.graph_functions import plot_temp_with_data, plot_hum_with_data, plot_light_with_data
 
 app = Flask(__name__)
 
@@ -85,7 +85,7 @@ def plot_temp():
 @app.route('/plot/hum')
 def plot_hum():
     data = getHistData(numSamples)
-    fig = plot_temp_with_data(data)
+    fig = plot_hum_with_data(data)
     canvas = FigureCanvas(fig)
     output = io.BytesIO()
     canvas.print_png(output)
@@ -97,7 +97,7 @@ def plot_hum():
 @app.route('/plot/light')
 def plot_light():
     data = getHistData(numSamples)
-    fig = plot_temp_with_data(data)
+    fig = plot_light_with_data(data)
     canvas = FigureCanvas(fig)
     output = io.BytesIO()
     canvas.print_png(output)

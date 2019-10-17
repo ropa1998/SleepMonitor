@@ -62,6 +62,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route("/reports")
+def reports():
+    return render_template('reports.html')
+
+
 @app.route("/", methods=['POST'])
 def login_post():
     email = request.form.get('username')
@@ -69,14 +74,14 @@ def login_post():
 
     # TODO: improve this?
     if email == 'admin' and password == 'admin':
-        return redirect(url_for('info'))
+        return redirect(url_for('home'))
     else:
         flash('Invalid credentials')
         return redirect(url_for('index'))
 
 
-@app.route("/info")
-def info():
+@app.route("/home")
+def home():
     time, temp, hum, light = getLastData()
     templateData = {
         'time': time,
@@ -85,10 +90,10 @@ def info():
         'light': light,
         'numSamples': numSamples
     }
-    return render_template('info.html', **templateData)
+    return render_template('home.html', **templateData)
 
 
-@app.route('/info', methods=['POST'])
+@app.route('/home', methods=['POST'])
 def my_form_post():
     global numSamples
     numSamples = int(request.form['numSamples'])
@@ -105,7 +110,7 @@ def my_form_post():
         'light': light,
         'numSamples': numSamples
     }
-    return render_template('info.html', **templateData)
+    return render_template('home.html', **templateData)
 
 
 # TODO refactor all plots in one method.
@@ -148,8 +153,8 @@ def plot_hum():
     axis.set_ylim([min(ys)-5, max(ys)+5])
     xs = range(numSamples)
     axis.plot(xs, ys)
-    # print(max(temps))
-    axis.axhspan(30, 40, facecolor='red', alpha=0.3)
+    print(min(temps))
+    axis.axhspan(min(ys) - 5 if min(ys) < 30 else 30, 40, facecolor='red', alpha=0.3)
     axis.axhspan(40, 45, facecolor='yellow', alpha=0.5)
     axis.axhspan(45, 55, facecolor='green', alpha=0.3)
     axis.axhspan(55, 60, facecolor='yellow', alpha=0.5)

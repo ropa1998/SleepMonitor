@@ -1,10 +1,10 @@
 import io
+
 from flask import Flask, render_template, make_response, request, redirect, flash, url_for
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
 
-from SleepMonitor.Python.Flask.db_manager import getLastData, maxRowsTable, getHistData
-from SleepMonitor.Python.Flask.graph_functions import plot_temp_with_data, plot_hum_with_data, plot_light_with_data
+from Python.Flask.db_manager import getLastData, maxRowsTable, getHistData
+from Python.Flask.graph_functions import plot_temp_with_data, plot_hum_with_data, plot_light_with_data
 
 app = Flask(__name__)
 

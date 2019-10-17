@@ -1,6 +1,6 @@
 from matplotlib.figure import Figure
 
-from SleepMonitor.Python.Flask.db_manager import getDataAsTuple
+from Python.Flask.db_manager import getDataAsTuple
 
 
 def plot_temp_with_data(data):

@@ -3,8 +3,8 @@ from flask import Flask, render_template, make_response, request, redirect, flas
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-from SleepMonitor.Python.Flask.db_manager import getLastData, maxRowsTable, getHistData
-from SleepMonitor.Python.Flask.graph_functions import plot_temp_with_data
+from Python.Flask.db_manager import getLastData, maxRowsTable, getHistData
+from Python.Flask.graph_functions import plot_temp_with_data
 
 app = Flask(__name__)
 
@@ -28,14 +28,14 @@ def login_post():
 
     # TODO: improve this?
     if email == 'admin' and password == 'admin':
-        return redirect(url_for('info'))
+        return redirect(url_for('home'))
     else:
         flash('Invalid credentials')
         return redirect(url_for('index'))
 
 
-@app.route("/info")
-def info():
+@app.route("/home")
+def home():
     time, temp, hum, light = getLastData()
     template_data = {
         'time': time,
@@ -44,10 +44,10 @@ def info():
         'light': light,
         'numSamples': numSamples
     }
-    return render_template('info.html', **template_data)
+    return render_template('home.html', **template_data)
 
 
-@app.route('/info', methods=['POST'])
+@app.route('/home', methods=['POST'])
 def my_form_post():
     global numSamples
     numSamples = int(request.form['numSamples'])
@@ -106,9 +106,9 @@ def plot_light():
     return response
 
 
-@app.route('/generate_report')
+@app.route('/reports')
 def generate_report():
-    render_template()
+    return render_template('reports.html')
 
 
 if __name__ == '__main__':

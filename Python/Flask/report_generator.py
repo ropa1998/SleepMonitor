@@ -1,7 +1,7 @@
 import sqlite3 as lite
 from datetime import datetime
 
-from SleepMonitor.Python.Flask.sleep_app import plot_hum_with_data,plot_light_with_data,plot_temp_with_data
+from Python.Flask.graph_functions import plot_hum_with_data, plot_temp_with_data, plot_light_with_data
 
 
 def generate_report(from_datetime: datetime, to_datetime: datetime):

@@ -5,7 +5,7 @@
     <title>Sleep Monitor </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-   <link rel="stylesheet" href="{{url_for('.static', filename='styles.css')}}">
+    <link rel="stylesheet" href="{{url_for('.static', filename='styles.css')}}">
 </head>
 
 <body>
@@ -17,10 +17,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-               <li class="nav-item active">
+            <li class="nav-item active">
                 <a class="nav-link" href="#">Configure<span class="sr-only">(current)</span></a>
             </li>
-               <li class="nav-item active">
+            <li class="nav-item active">
                 <a class="nav-link" href="/reports">Reports<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
@@ -44,13 +44,19 @@
         <div class="readings">
             <div class="row">
                 <div class="col-md">
-                    <h3>Temperature <div id="tempDiv"><span id="lastTemp">{{ temp }}</span> oC</div></h3>
+                    <h3>Temperature
+                        <div id="tempDiv"><span id="lastTemp">{{ temp }}</span> oC</div>
+                    </h3>
                 </div>
                 <div class="col-md">
-                    <h3>Humidity <div id="humDiv"><span id="lastHum">{{ hum }}</span> %</div></h3>
+                    <h3>Humidity
+                        <div id="humDiv"><span id="lastHum">{{ hum }}</span> %</div>
+                    </h3>
                 </div>
                 <div class="col-md">
-                    <h3>Light <div id="luxDiv"><span id="lastLux">{{ light }}</span>  lux</div></h3>
+                    <h3>Light
+                        <div id="luxDiv"><span id="lastLux">{{ light }}</span> lux</div>
+                    </h3>
                 </div>
 
             </div>
@@ -101,6 +107,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script type="text/javascript"
-         src="{{ url_for('static', filename='info.js') }}"></script>
+        src="{{ url_for('static', filename='info.js') }}"></script>
 </body>
 </html>

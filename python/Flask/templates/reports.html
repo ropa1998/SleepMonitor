@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Reports</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -9,6 +10,7 @@
 
 </head>
 <body>
+
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
     <a class="navbar-brand" href="#">Sleep Monitor</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -27,37 +29,38 @@
                 <a class="nav-link" href="/">Log out</a>
             </li>
         </ul>
-
     </div>
 </nav>
 
-<div style="background-color:#fff; padding-left:50px">
+<div class="col" style="background-color:#fff; padding-left:50px">
     <div style="height:20px"></div>
     <h3>Report generator: </h3>
+        <div style="height:10px"></div>
+
     <p>Enter the range on which you want to generate the report:</p>
-    <form class="form-inline">
+            <div style="height:10px"></div>
+
+    <form class="form-inline" method="POST">
         <div class="form-row" style="margin:0">
             <p>From: </p>
             <div style="width:10px"></div>
             <label class="sr-only">From</label>
-            <input name="username" type="datetime-local" id="id" class="form-control" placeholder="From" required=""
+            <input name="initial" type="datetime-local" id="id" class="form-control" placeholder="From" required=""
                    autofocus="">
             <div style="width:10px"></div>
 
             <p>To: </p>
             <div style="width:10px"></div>
-
             <label class="sr-only">From</label>
-            <input name="username" type="datetime-local" id="ee" class="form-control" placeholder="From" required=""
+            <input name="to" type="datetime-local" id="ee" class="form-control" placeholder="To" required=""
                    autofocus="">
             <div style="width:10px"></div>
             <button type="submit" class="btn btn-primary mb-2">Generate</button>
         </div>
-
     </form>
-
     <hr>
 </div>
+
 
 <footer class="text-muted bg-light">
     <div class="container">
@@ -67,6 +70,7 @@
         <p>©2019 Sleepmonitor Inc.</p>
     </div>
 </footer>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

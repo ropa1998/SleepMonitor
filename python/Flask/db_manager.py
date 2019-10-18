@@ -1,7 +1,6 @@
 import sqlite3 as lite
 from datetime import datetime
 
-
 def getHistData(numSamples):
     con = lite.connect('../sensorsData.db')
     with con:

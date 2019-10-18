@@ -3,8 +3,8 @@ import io
 from flask import Flask, render_template, make_response, request, redirect, flash, url_for
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
-from Python.Flask.db_manager import getLastData, maxRowsTable, getHistData
-from Python.Flask.graph_functions import plot_temp_with_data, plot_hum_with_data, plot_light_with_data
+from SleepMonitor.python.Flask.db_manager import getLastData, maxRowsTable, getHistData
+from SleepMonitor.python.Flask.graph_functions import plot_temp_with_data, plot_hum_with_data, plot_light_with_data
 
 app = Flask(__name__)
 
@@ -64,12 +64,12 @@ def my_form_post():
         'light': light,
         'numSamples': numSamples
     }
-    return render_template('index.html', **template_data)
+    return render_template('home.html', **template_data)
 
 
 # TODO refactor all plots in one method.
 # TODO cambiar "Samples" por timestamp. Formatear para que quede lindo.
-# TODO armar documentacion de Arduino, Python, y Base de Datos
+# TODO armar documentacion de Arduino, python, y Base de Datos
 @app.route('/plot/temp')
 def plot_temp():
     data = getHistData(numSamples)

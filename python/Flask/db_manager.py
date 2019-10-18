@@ -1,4 +1,5 @@
 import sqlite3 as lite
+from datetime import datetime
 
 
 def getHistData(numSamples):
@@ -44,3 +45,13 @@ def getLastData():
             light = row[3]
     # conn.close()
     return time, temp, hum, light
+
+
+def get_report_data(from_datetime: datetime, to_datetime: datetime):
+    con = lite.connect('../sensorsData.db')
+    with con:
+        cur = con.cursor()
+        query = "SELECT * FROM DHT_data WHERE timestamp BETWEEN '" + from_datetime.strftime(
+            "%Y-%m-%d %H:%M:%S") + "' AND '" + to_datetime.strftime(
+            "%Y-%m-%d %H:%M:%S") + "'"
+        return cur.execute(query).fetchall()

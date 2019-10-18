@@ -10,7 +10,6 @@
 
 </head>
 <body>
-
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
     <a class="navbar-brand" href="#">Sleep Monitor</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -32,7 +31,7 @@
     </div>
 </nav>
 
-<div class="col" style="background-color:#fff; padding-left:50px">
+<div class="col" style="background-color:#fff; padding-left:50px;margin:auto">
     <div style="height:20px"></div>
     <h3>Report generator: </h3>
         <div style="height:10px"></div>
@@ -40,7 +39,7 @@
     <p>Enter the range on which you want to generate the report:</p>
             <div style="height:10px"></div>
 
-    <form class="form-inline" method="POST">
+    <form name="generate" class="form-inline" method="POST" onsubmit="return validate(this)">
         <div class="form-row" style="margin:0">
             <p>From: </p>
             <div style="width:10px"></div>
@@ -55,14 +54,12 @@
             <input name="to" type="datetime-local" id="ee" class="form-control" placeholder="To" required=""
                    autofocus="">
             <div style="width:10px"></div>
-            <button type="submit" class="btn btn-primary mb-2">Generate</button>
+            <button type="submit" class="btn btn-primary mb-2" onclick="validateDate();">Generate</button>
         </div>
     </form>
     <hr>
 </div>
-
-
-<footer class="text-muted bg-light">
+<footer class="text-muted bg-light" style="position:absolute;bottom:0;left:0;right:0;">
     <div class="container">
         <p class="float-right">
             <a href="#">Back to top</a>
@@ -81,6 +78,20 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+<script>
+    function validate(form){
+
+    console.log("GG");
+    if(document.generate.initial.value < document.generate.to.value){
+    console.log("Todo ok");
+    return true;
+    }else{
+    alert("From can not be after to");
+    return false;
+    }
+    }
+</script>
 </body>
 
 

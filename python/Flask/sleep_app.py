@@ -114,9 +114,9 @@ def plot_light():
     return response
 
 
-@app.route('/reports')
+@app.route('/report_generator')
 def generate_a_report():
-    return render_template('reports.html')
+    return render_template('report_generator.html')
 
 
 @app.route('/report/temp')
@@ -161,7 +161,7 @@ def report_light():
     return response
 
 
-@app.route('/reports', methods=['POST'])
+@app.route('/report_generator', methods=['POST'])
 def generate_post_report():
     template_data = {
         'from': request.form['initial'],

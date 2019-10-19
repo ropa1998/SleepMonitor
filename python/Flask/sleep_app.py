@@ -4,7 +4,7 @@ import datetime as datetime
 from flask import Flask, render_template, make_response, request, redirect, flash, url_for
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
-from python.Flask import date_parser
+from python.Flask import date_parser, graph_functions
 from python.Flask.db_manager import getLastData, maxRowsTable, getHistData, get_report_data, save_sleeping_range, \
     get_sleeping_range
 from python.Flask.graph_functions import plot_temp_with_data, plot_hum_with_data, plot_light_with_data
@@ -43,7 +43,7 @@ def configuration():
 
 
 @app.route("/configuration", methods=['POST'])
-def other_configuration():
+def modify_configuration():
     save_sleeping_range(request.form.get("mail"), request.form.get('initial'), request.form.get('end'))
     flash("Your information was updated successfully")
     return render_template('configuration.html')
@@ -65,12 +65,16 @@ def login_post():
 @app.route("/home")
 def home():
     time, temp, hum, light = getLastData()
+    graph_functions.generate_home_graphs(numSamples)
     template_data = {
         'time': date_parser.PRETTY_FORMAT.format(parse_time(time, date_parser.HOME_FORMAT)),
         'temp': temp,
         'hum': hum,
         'light': light,
-        'numSamples': numSamples
+        'numSamples': numSamples,
+        'temp_graph': "static/images/home/temp_graph",
+        'hum_graph': "static/images/home/hum_graph",
+        'light_graph': "static/images/home/light_graph"
     }
     return render_template('home.html', **template_data)
 
@@ -85,12 +89,16 @@ def my_form_post():
 
     time, temp, hum, light = getLastData()
 
+    graph_functions.generate_home_graphs(numSamples)
     template_data = {
         'time': date_parser.PRETTY_FORMAT.format(parse_time(time, date_parser.HOME_FORMAT)),
         'temp': temp,
         'hum': hum,
         'light': light,
-        'numSamples': numSamples
+        'numSamples': numSamples,
+        'temp_graph': "static/images/home/temp_graph",
+        'hum_graph': "static/images/home/hum_graph",
+        'light_graph': "static/images/home/light_graph"
     }
     return render_template('home.html', **template_data)
 
@@ -98,40 +106,6 @@ def my_form_post():
 # TODO refactor all plots in one method.
 # TODO cambiar "Samples" por timestamp. Formatear para que quede lindo.
 # TODO armar documentacion de Arduino, python, y Base de Datos
-@app.route('/plot/temp')
-def plot_temp():
-    data = getHistData(numSamples)
-    fig = plot_temp_with_data(data)
-    canvas = FigureCanvas(fig)
-    output = io.BytesIO()
-    canvas.print_png(output)
-    response = make_response(output.getvalue())
-    response.mimetype = 'image/png'
-    return response
-
-
-@app.route('/plot/hum')
-def plot_hum():
-    data = getHistData(numSamples)
-    fig = plot_hum_with_data(data)
-    canvas = FigureCanvas(fig)
-    output = io.BytesIO()
-    canvas.print_png(output)
-    response = make_response(output.getvalue())
-    response.mimetype = 'image/png'
-    return response
-
-
-@app.route('/plot/light')
-def plot_light():
-    data = getHistData(numSamples)
-    fig = plot_light_with_data(data)
-    canvas = FigureCanvas(fig)
-    output = io.BytesIO()
-    canvas.print_png(output)
-    response = make_response(output.getvalue())
-    response.mimetype = 'image/png'
-    return response
 
 
 @app.route('/report_generator')
@@ -139,61 +113,18 @@ def generate_a_report():
     return render_template('report_generator.html')
 
 
-@app.route('/report/temp')
-def report_temp():
-    global initial
-    global to
-    data = get_report_data(parse_time(initial, date_parser.TIME_STAMP_FORMAT),
-                           parse_time(to, date_parser.TIME_STAMP_FORMAT))
-    fig = plot_temp_with_data(data)
-    canvas = FigureCanvas(fig)
-    output = io.BytesIO()
-    canvas.print_png(output)
-    response = make_response(output.getvalue())
-    response.mimetype = 'image/png'
-    return response
-
-
-@app.route('/report/hum')
-def report_hum():
-    global initial
-    global to
-    data = get_report_data(parse_time(initial, date_parser.TIME_STAMP_FORMAT),
-                           parse_time(to, date_parser.TIME_STAMP_FORMAT))
-    fig = plot_hum_with_data(data)
-    canvas = FigureCanvas(fig)
-    output = io.BytesIO()
-    canvas.print_png(output)
-    response = make_response(output.getvalue())
-    response.mimetype = 'image/png'
-    return response
-
-
-@app.route('/report/light')
-def report_light():
-    global initial
-    global to
-    data = get_report_data(parse_time(initial, date_parser.TIME_STAMP_FORMAT),
-                           parse_time(to, date_parser.TIME_STAMP_FORMAT))
-    fig = plot_light_with_data(data)
-    canvas = FigureCanvas(fig)
-    output = io.BytesIO()
-    canvas.print_png(output)
-    response = make_response(output.getvalue())
-    response.mimetype = 'image/png'
-    return response
-
-
 @app.route('/report_generator', methods=['POST'])
 def generate_post_report():
-    template_data = {
-        'from': date_parser.string_to_format(request.form['initial']),
-        'to': date_parser.string_to_format(request.form['to']),
-    }
     global initial
     initial = request.form['initial']
     global to
     to = request.form['to']
+
+    graph_functions.generate_report_graphs(date_parser.string_to_format(initial), date_parser.string_to_format(to))
+    template_data = {
+        'from': date_parser.string_to_format(initial),
+        'to': date_parser.string_to_format(to),
+    }
 
     print(template_data)
     return render_template('report.html', **template_data)

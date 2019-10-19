@@ -1,8 +1,12 @@
+import io
+from datetime import datetime
+
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+from matplotlib.backends.backend_template import FigureCanvas
 
-from python.Flask import date_parser
-from python.Flask.db_manager import getDataAsTuple
+from python.Flask import date_parser, db_manager
+from python.Flask.db_manager import getDataAsTuple, getHistData
 
 TEMP_GREEN_LOW = 16
 TEMP_GREEN_HIGH = 20
@@ -41,6 +45,9 @@ X_AXIS_LABEL = "Time"
 TEMPERATURE_LABEL = "Temperature [°C]"
 HUMIDITY_LABEL = "Humidity [%]"
 LIGHT_LABEL = "Light [Lux]"
+
+HOME = "home"
+REPORT = "report"
 
 
 def plot_temp_with_data(data):
@@ -100,3 +107,38 @@ def plot_light_with_data(data):
     axis.axhspan(LIGHT_YELLOW_LOW, LIGHT_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
     axis.axhspan(LIGHT_RED_LOW, max(ys) if max(ys) > 10 else 20, facecolor='red', alpha=RED_ALPHA)
     return fig
+
+
+def generate_temp(data, path):
+    fig = plot_temp_with_data(data)
+    fig.savefig('static/images/' + path + '/temp_graph.png')
+
+
+def generate_hum(data, path):
+    fig = plot_temp_with_data(data)
+    fig.savefig('static/images/' + path + '/hum_graph.png')
+
+
+def generate_light(data, path):
+    fig = plot_temp_with_data(data)
+    fig.savefig('static/images/' + path + '/light_graph.png')
+
+
+def generate_home_graphs(numSamples):
+    data = getHistData(numSamples)
+    generate_hum(data, HOME)
+    generate_light(data, HOME)
+    generate_temp(data, HOME)
+
+
+def generate_report_graphs(initial, to):
+    data = db_manager.get_report_data(initial, to)
+    generate_hum(data, REPORT)
+    generate_light(data, REPORT)
+    generate_temp(data, REPORT)
+
+
+# init = datetime(2019, 10, 12, 00, 00, 00)
+# to = datetime(2019, 10, 19, 20, 00, 00)
+#
+# generate_report_graphs(init, to)

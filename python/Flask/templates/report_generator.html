@@ -22,7 +22,7 @@
                 <a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">Reports<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/configuration">Reports<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/">Log out</a>
@@ -31,15 +31,15 @@
     </div>
 </nav>
 
-<div class="col" style="background-color:#fff; padding-left:50px;margin:auto">
+<div class="col" style="background-color:#fff;margin:auto">
     <div style="height:20px"></div>
     <h3>Report generator: </h3>
-        <div style="height:10px"></div>
+    <div style="height:10px"></div>
 
     <p>Enter the range on which you want to generate the report:</p>
-            <div style="height:10px"></div>
+    <div style="height:10px"></div>
 
-    <form name="generate" class="form-inline" method="POST" onsubmit="return validate(this)">
+    <form name="generate" class="form-inline" method="POST" onsubmit="return validate(this)" target="_blank">
         <div class="form-row" style="margin:0">
             <p>From: </p>
             <div style="width:10px"></div>
@@ -91,6 +91,7 @@
     return false;
     }
     }
+
 </script>
 </body>
 

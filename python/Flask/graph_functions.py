@@ -1,6 +1,6 @@
 from matplotlib.figure import Figure
 
-from SleepMonitor.python.Flask.db_manager import getDataAsTuple
+from python.Flask.db_manager import getDataAsTuple
 
 TEMP_GREEN_LOW = 16
 TEMP_GREEN_HIGH = 20
@@ -68,10 +68,10 @@ def plot_hum_with_data(data):
     axis.set_ylim([min(ys) - 5, max(ys) + 5])
     xs = range(length)
     axis.plot(xs, ys)
-    axis.axhspan(HUM_INFERIOR_RED_LOW, HUM_INFERIOR_RED_HIGH, facecolor='red', alpha=RED_ALPHA)
-    axis.axhspan(HUM_INFERIOR_YELLOW_LOW, HUM_SUPERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
-    axis.axhspan(HUM_GREEN_LOW, HUM_GREEN_HIGH, facecolor='green', alpha=GREEN_ALPHA)
-    axis.axhspan(HUM_SUPERIOR_YELLOW_LOW, HUM_SUPERIOR_YELLOW_HIGH, facecolor='yellow', alpha=0.1)
+    axis.axhspan(HUM_INFERIOR_RED_LOW if min(ys) > HUM_INFERIOR_RED_LOW else min(ys)-5, HUM_INFERIOR_RED_HIGH, facecolor='red', alpha=RED_ALPHA)
+    axis.axhspan(HUM_INFERIOR_YELLOW_LOW, HUM_INFERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
+    axis.axhspan(HUM_GREEN_LOW, HUM_GREEN_HIGH, facecolor='green', alpha= GREEN_ALPHA)
+    axis.axhspan(HUM_SUPERIOR_YELLOW_LOW, HUM_SUPERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
     axis.axhspan(HUM_SUPERIOR_RED_LOW, max(ys) + 5 if max(ys) > 60 else 70, facecolor='red', alpha=RED_ALPHA)
     return fig
 

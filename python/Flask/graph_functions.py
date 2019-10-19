@@ -115,17 +115,17 @@ def plot_light_with_data(data):
 
 def generate_temp(data, path):
     fig = plot_temp_with_data(data)
-    fig.savefig('static/images/' + path + '/temp_graph.png')
+    fig.savefig('images/' + path + '/temp_graph.png')
 
 
 def generate_hum(data, path):
-    fig = plot_temp_with_data(data)
-    fig.savefig('static/images/' + path + '/hum_graph.png')
+    fig = plot_hum_with_data(data)
+    fig.savefig('images/' + path + '/hum_graph.png')
 
 
 def generate_light(data, path):
-    fig = plot_temp_with_data(data)
-    fig.savefig('static/images/' + path + '/light_graph.png')
+    fig = plot_light_with_data(data)
+    fig.savefig('images/' + path + '/light_graph.png')
 
 
 def generate_home_graphs(numSamples):

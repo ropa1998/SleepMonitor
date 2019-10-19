@@ -69,10 +69,11 @@ def get_sleeping_range():
     return email, initial, to
 
 
-def save_sleeping_range(date_from, date_to):
+def save_sleeping_range(mail, date_from, date_to):
     con = lite.connect('../sensorsData.db')
     with con:
         cur = con.cursor()
-        query = "INSERT INTO sleeping_ranges (initial, end)  VALUES (\'" + date_from + "\',\'" + date_to + "\')"
-        print(query)
-        cur.execute(query)
+        query1 = "DELETE FROM sleeping_ranges"
+        query2 = "INSERT INTO sleeping_ranges VALUES (" "\'" + mail + "\'" + "," + "\'" + date_from + "\',\'" + date_to + "\')"
+        cur.execute(query1)
+        cur.execute(query2)

@@ -62,10 +62,11 @@ def get_sleeping_range():
     with con:
         curs = con.cursor()
         for row in curs.execute("SELECT * FROM sleeping_ranges"):
-            initial = row[0]
-            to = row[1]
+            email = row[0]
+            initial = row[1]
+            to = row[2]
     # conn.close()
-    return initial, to
+    return email, initial, to
 
 
 def save_sleeping_range(date_from, date_to):

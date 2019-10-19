@@ -1,4 +1,5 @@
 import io
+import os
 
 import datetime as datetime
 from flask import Flask, render_template, make_response, request, redirect, flash, url_for
@@ -65,16 +66,12 @@ def login_post():
 @app.route("/home")
 def home():
     time, temp, hum, light = getLastData()
-    graph_functions.generate_home_graphs(numSamples)
     template_data = {
         'time': date_parser.PRETTY_FORMAT.format(parse_time(time, date_parser.HOME_FORMAT)),
         'temp': temp,
         'hum': hum,
         'light': light,
         'numSamples': numSamples,
-        'temp_graph': "static/images/home/temp_graph",
-        'hum_graph': "static/images/home/hum_graph",
-        'light_graph': "static/images/home/light_graph"
     }
     return render_template('home.html', **template_data)
 
@@ -89,16 +86,12 @@ def my_form_post():
 
     time, temp, hum, light = getLastData()
 
-    graph_functions.generate_home_graphs(numSamples)
     template_data = {
         'time': date_parser.PRETTY_FORMAT.format(parse_time(time, date_parser.HOME_FORMAT)),
         'temp': temp,
         'hum': hum,
         'light': light,
         'numSamples': numSamples,
-        'temp_graph': "static/images/home/temp_graph",
-        'hum_graph': "static/images/home/hum_graph",
-        'light_graph': "static/images/home/light_graph"
     }
     return render_template('home.html', **template_data)
 
@@ -120,7 +113,6 @@ def generate_post_report():
     global to
     to = request.form['to']
 
-    graph_functions.generate_report_graphs(date_parser.string_to_format(initial), date_parser.string_to_format(to))
     template_data = {
         'from': date_parser.string_to_format(initial),
         'to': date_parser.string_to_format(to),
@@ -128,6 +120,87 @@ def generate_post_report():
 
     print(template_data)
     return render_template('report.html', **template_data)
+
+
+@app.route('/plot/temp')
+def plot_temp():
+    data = getHistData(numSamples)
+    fig = plot_temp_with_data(data)
+    canvas = FigureCanvas(fig)
+    output = io.BytesIO()
+    canvas.print_png(output)
+    response = make_response(output.getvalue())
+    response.mimetype = 'image/png'
+    return response
+
+
+@app.route('/plot/hum')
+def plot_hum():
+    data = getHistData(numSamples)
+    fig = plot_hum_with_data(data)
+    canvas = FigureCanvas(fig)
+    output = io.BytesIO()
+    canvas.print_png(output)
+    response = make_response(output.getvalue())
+    response.mimetype = 'image/png'
+    return response
+
+
+@app.route('/plot/light')
+def plot_light():
+    data = getHistData(numSamples)
+    fig = plot_light_with_data(data)
+    canvas = FigureCanvas(fig)
+    output = io.BytesIO()
+    canvas.print_png(output)
+    response = make_response(output.getvalue())
+    response.mimetype = 'image/png'
+    return response
+
+
+@app.route('/report/temp')
+def report_temp():
+    global initial
+    global to
+    data = get_report_data(parse_time(initial, date_parser.TIME_STAMP_FORMAT),
+                           parse_time(to, date_parser.TIME_STAMP_FORMAT))
+    fig = plot_temp_with_data(data)
+    canvas = FigureCanvas(fig)
+    output = io.BytesIO()
+    canvas.print_png(output)
+    response = make_response(output.getvalue())
+    response.mimetype = 'image/png'
+    return response
+
+
+@app.route('/report/hum')
+def report_hum():
+    global initial
+    global to
+    data = get_report_data(parse_time(initial, date_parser.TIME_STAMP_FORMAT),
+                           parse_time(to, date_parser.TIME_STAMP_FORMAT))
+    fig = plot_hum_with_data(data)
+    canvas = FigureCanvas(fig)
+    output = io.BytesIO()
+    canvas.print_png(output)
+    response = make_response(output.getvalue())
+    response.mimetype = 'image/png'
+    return response
+
+
+@app.route('/report/light')
+def report_light():
+    global initial
+    global to
+    data = get_report_data(parse_time(initial, date_parser.TIME_STAMP_FORMAT),
+                           parse_time(to, date_parser.TIME_STAMP_FORMAT))
+    fig = plot_light_with_data(data)
+    canvas = FigureCanvas(fig)
+    output = io.BytesIO()
+    canvas.print_png(output)
+    response = make_response(output.getvalue())
+    response.mimetype = 'image/png'
+    return response
 
 
 if __name__ == '__main__':

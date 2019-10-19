@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-from python.Flask import utils
+from python.Flask import date_parser
 from python.Flask.db_manager import getDataAsTuple
 
 TEMP_GREEN_LOW = 16
@@ -45,7 +45,7 @@ LIGHT_LABEL = "Light [Lux]"
 
 def plot_temp_with_data(data):
     times, temps, hums, lights = getDataAsTuple(data)
-    times = list(map(utils.parse_standard, times))
+    times = list(map(date_parser.parse_standard, times))
     ys = temps
     fig, axis = plt.subplots()
     axis.set_title(TEMPERATURE_LABEL)
@@ -65,7 +65,7 @@ def plot_temp_with_data(data):
 
 def plot_hum_with_data(data):
     times, temps, hums, lights = getDataAsTuple(data)
-    times = list(map(utils.parse_standard, times))
+    times = list(map(date_parser.parse_standard, times))
     ys = hums
     fig, axis = plt.subplots()
     axis.set_title(HUMIDITY_LABEL)
@@ -86,7 +86,7 @@ def plot_hum_with_data(data):
 
 def plot_light_with_data(data):
     times, temps, hums, lights = getDataAsTuple(data)
-    times = list(map(utils.parse_standard, times))
+    times = list(map(date_parser.parse_standard, times))
     ys = lights
     fig, axis = plt.subplots()
     axis.set_title(LIGHT_LABEL)

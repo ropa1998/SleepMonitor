@@ -8,10 +8,10 @@ import keyring
 
 receiver = "franz.sotoleal@ing.austral.edu.ar"
 body = "Hello there from Yagmail"
-username = "sleepmonitorUA@gmail.com"
-password = keyring.get_password("gmail", username)
+USERNAME = "sleepmonitorUA@gmail.com"
+PASSWORD = keyring.get_password("gmail", USERNAME)
 
-yag = yagmail.SMTP(username, password)
+yag = yagmail.SMTP(USERNAME, PASSWORD)
 
 
 def send_email(to: str, subject: str, body: str, attachments: []):

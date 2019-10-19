@@ -26,11 +26,13 @@ After that you will need to connect via USB your Arduino to your SBC.
     * `sudo apt-get install sqlite3`
     * `sudo apt-get install sqlitebrowser`
 * Then you will need to run the requirements.txt file. To do that remember to set a virtual enviorment for this app. Then, inside the venv just run `pip install --user --requirement requirements.txt`. This will leave all the required libraries for the project to work readily installed in your virtual environment.
-* After that you must run two different Python scripts in your SBC:
+* After that you must create yourself a [gmail account](https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp) and [set it](https://myaccount.google.com/lesssecureapps) up to work for app SMTP.
+    * Then you must configure your account in the `email_sender.py` module. For the `USERNAME` constant write the email of your newly created account. Now open the Python Console and configure [keyring](https://pypi.org/project/keyring/) to use it in the app.  
+* After that you must run two different Python scripts in your SBC, in different consoles. Leave the second one running:
     * `create_database.py`
     * `serial_reader.py`
  
- That's it for the perquisites part! 
+ That's it for the prequisites part! 
  
  ## Usage
  Now to the interesting part: how do you use this?

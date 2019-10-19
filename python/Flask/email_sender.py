@@ -6,8 +6,8 @@ import keyring
 # >>> keyring.get_password("system", "username")
 # 'password'
 
-receiver = "franz.sotoleal@ing.austral.edu.ar"
-body = "Hello there from Yagmail"
+RECEIVER = "franz.sotoleal@ing.austral.edu.ar"
+BODY = ""
 USERNAME = "sleepmonitorUA@gmail.com"
 PASSWORD = keyring.get_password("gmail", USERNAME)
 
@@ -23,4 +23,4 @@ def send_email(to: str, subject: str, body: str, attachments: []):
     )
 
 
-send_email(receiver, body, body, ["/home/rodrigo/projects/sleepmonitor/SleepMonitor/python/Flask/templates/home.html"])
+# send_email(receiver, body, body, ["/home/rodrigo/projects/sleepmonitor/SleepMonitor/python/Flask/templates/home.html"])

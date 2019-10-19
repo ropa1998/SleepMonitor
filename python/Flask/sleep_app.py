@@ -4,10 +4,10 @@ import datetime as datetime
 from flask import Flask, render_template, make_response, request, redirect, flash, url_for
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
-from python.Flask import utils
-from python.Flask.db_manager import getLastData, maxRowsTable, getHistData, get_report_data, save_sleeping_range
+from python.Flask import date_parser
+from python.Flask.db_manager import getLastData, maxRowsTable, getHistData, get_report_data
 from python.Flask.graph_functions import plot_temp_with_data, plot_hum_with_data, plot_light_with_data
-from python.Flask.utils import parse_time
+from python.Flask.date_parser import parse_time
 
 app = Flask(__name__)
 
@@ -58,7 +58,7 @@ def login_post():
 def home():
     time, temp, hum, light = getLastData()
     template_data = {
-        'time': utils.PRETTY_FORMAT.format(parse_time(time, utils.HOME_FORMAT)),
+        'time': date_parser.PRETTY_FORMAT.format(parse_time(time, date_parser.HOME_FORMAT)),
         'temp': temp,
         'hum': hum,
         'light': light,
@@ -78,7 +78,7 @@ def my_form_post():
     time, temp, hum, light = getLastData()
 
     template_data = {
-        'time': utils.PRETTY_FORMAT.format(parse_time(time, utils.HOME_FORMAT)),
+        'time': date_parser.PRETTY_FORMAT.format(parse_time(time, date_parser.HOME_FORMAT)),
         'temp': temp,
         'hum': hum,
         'light': light,
@@ -135,7 +135,7 @@ def generate_a_report():
 def report_temp():
     global initial
     global to
-    data = get_report_data(parse_time(initial, utils.TIME_STAMP_FORMAT), parse_time(to, utils.TIME_STAMP_FORMAT))
+    data = get_report_data(parse_time(initial, date_parser.TIME_STAMP_FORMAT), parse_time(to, date_parser.TIME_STAMP_FORMAT))
     fig = plot_temp_with_data(data)
     canvas = FigureCanvas(fig)
     output = io.BytesIO()
@@ -149,7 +149,7 @@ def report_temp():
 def report_hum():
     global initial
     global to
-    data = get_report_data(parse_time(initial, utils.TIME_STAMP_FORMAT), parse_time(to, utils.TIME_STAMP_FORMAT))
+    data = get_report_data(parse_time(initial, date_parser.TIME_STAMP_FORMAT), parse_time(to, date_parser.TIME_STAMP_FORMAT))
     fig = plot_hum_with_data(data)
     canvas = FigureCanvas(fig)
     output = io.BytesIO()
@@ -163,7 +163,7 @@ def report_hum():
 def report_light():
     global initial
     global to
-    data = get_report_data(parse_time(initial, utils.TIME_STAMP_FORMAT), parse_time(to, utils.TIME_STAMP_FORMAT))
+    data = get_report_data(parse_time(initial, date_parser.TIME_STAMP_FORMAT), parse_time(to, date_parser.TIME_STAMP_FORMAT))
     fig = plot_light_with_data(data)
     canvas = FigureCanvas(fig)
     output = io.BytesIO()
@@ -176,8 +176,8 @@ def report_light():
 @app.route('/report_generator', methods=['POST'])
 def generate_post_report():
     template_data = {
-        'from': utils.string_to_format(request.form['initial']),
-        'to': utils.string_to_format(request.form['to']),
+        'from': date_parser.string_to_format(request.form['initial']),
+        'to': date_parser.string_to_format(request.form['to']),
     }
     global initial
     initial = request.form['initial']

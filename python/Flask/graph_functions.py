@@ -1,5 +1,7 @@
-from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 
+from python.Flask import date_parser
 from python.Flask.db_manager import getDataAsTuple
 
 TEMP_GREEN_LOW = 16
@@ -35,19 +37,24 @@ GREEN_ALPHA = 0.3
 YELLOW_ALPHA = 0.5
 RED_ALPHA = 0.3
 
+X_AXIS_LABEL = "Time"
+TEMPERATURE_LABEL = "Temperature [°C]"
+HUMIDITY_LABEL = "Humidity [%]"
+LIGHT_LABEL = "Light [Lux]"
+
 
 def plot_temp_with_data(data):
     times, temps, hums, lights = getDataAsTuple(data)
+    times = list(map(date_parser.parse_standard, times))
     ys = temps
-    fig = Figure()
-    axis = fig.add_subplot(1, 1, 1)
-    axis.set_title("Temperature [°C]")
-    axis.set_xlabel("Samples")
+    fig, axis = plt.subplots()
+    axis.set_title(TEMPERATURE_LABEL)
+    axis.set_xlabel(X_AXIS_LABEL)
     axis.grid(True)
-    length = temps.__len__()
     axis.set_ylim([min(ys) - 5, max(ys) + 5])
-    xs = range(length)
+    xs = times
     axis.plot(xs, ys)
+    fig.autofmt_xdate()
     axis.axhspan(TEMP_SUPERIOR_RED_LOW, TEMP_SUPERIOR_RED_HIGH, facecolor='red', alpha=RED_ALPHA)
     axis.axhspan(TEMP_SUPERIOR_YELLOW_LOW, TEMP_SUPERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
     axis.axhspan(TEMP_GREEN_LOW, TEMP_GREEN_HIGH, facecolor='green', alpha=RED_ALPHA)
@@ -58,19 +65,20 @@ def plot_temp_with_data(data):
 
 def plot_hum_with_data(data):
     times, temps, hums, lights = getDataAsTuple(data)
+    times = list(map(date_parser.parse_standard, times))
     ys = hums
-    fig = Figure()
-    axis = fig.add_subplot(1, 1, 1)
-    axis.set_title("Humidity [%]")
-    axis.set_xlabel("Samples")
+    fig, axis = plt.subplots()
+    axis.set_title(HUMIDITY_LABEL)
+    axis.set_xlabel(X_AXIS_LABEL)
     axis.grid(True)
-    length = hums.__len__()
     axis.set_ylim([min(ys) - 5, max(ys) + 5])
-    xs = range(length)
+    xs = times
     axis.plot(xs, ys)
-    axis.axhspan(HUM_INFERIOR_RED_LOW if min(ys) > HUM_INFERIOR_RED_LOW else min(ys)-5, HUM_INFERIOR_RED_HIGH, facecolor='red', alpha=RED_ALPHA)
+    fig.autofmt_xdate()
+    axis.axhspan(HUM_INFERIOR_RED_LOW if min(ys) > HUM_INFERIOR_RED_LOW else min(ys) - 5, HUM_INFERIOR_RED_HIGH,
+                 facecolor='red', alpha=RED_ALPHA)
     axis.axhspan(HUM_INFERIOR_YELLOW_LOW, HUM_INFERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
-    axis.axhspan(HUM_GREEN_LOW, HUM_GREEN_HIGH, facecolor='green', alpha= GREEN_ALPHA)
+    axis.axhspan(HUM_GREEN_LOW, HUM_GREEN_HIGH, facecolor='green', alpha=GREEN_ALPHA)
     axis.axhspan(HUM_SUPERIOR_YELLOW_LOW, HUM_SUPERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
     axis.axhspan(HUM_SUPERIOR_RED_LOW, max(ys) + 5 if max(ys) > 60 else 70, facecolor='red', alpha=RED_ALPHA)
     return fig
@@ -78,16 +86,16 @@ def plot_hum_with_data(data):
 
 def plot_light_with_data(data):
     times, temps, hums, lights = getDataAsTuple(data)
+    times = list(map(date_parser.parse_standard, times))
     ys = lights
-    fig = Figure()
-    axis = fig.add_subplot(1, 1, 1)
-    axis.set_title("Light [Lux]")
-    axis.set_xlabel("Samples")
+    fig, axis = plt.subplots()
+    axis.set_title(LIGHT_LABEL)
+    axis.set_xlabel(X_AXIS_LABEL)
     axis.grid(True)
-    length = lights.__len__()
     axis.set_ylim([min(ys) - 5, max(ys) + 5])
-    xs = range(length)
+    xs = times
     axis.plot(xs, ys)
+    fig.autofmt_xdate()
     axis.axhspan(LIGHT_GREEN_LOW, LIGHT_GREEN_HIGH, facecolor='green', alpha=GREEN_ALPHA)
     axis.axhspan(LIGHT_YELLOW_LOW, LIGHT_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
     axis.axhspan(LIGHT_RED_LOW, max(ys) if max(ys) > 10 else 20, facecolor='red', alpha=RED_ALPHA)

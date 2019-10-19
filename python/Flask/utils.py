@@ -1,6 +1,7 @@
 import datetime as datetime
 
 
+
 def parse_time(date_str: str):
     date_time_obj = datetime.datetime.strptime(date_str, '%Y-%m-%dT%H:%M')
     return date_time_obj

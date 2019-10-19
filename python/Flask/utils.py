@@ -11,7 +11,7 @@ def parse_time(date_str: str, format:str):
 
 
 def string_to_format(string_date:str):
-    date_time_obj = datetime.datetime.strptime(string_date, TIME_STAMP_FORMAT)
+    date_time_obj = parse_time(string_date, TIME_STAMP_FORMAT)
     return PRETTY_FORMAT.format(date_time_obj)
 
 

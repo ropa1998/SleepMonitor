@@ -40,11 +40,10 @@ def get_time_difference_from_db():
     return minutes
 
 
-# check_report(5)
-#
-# while True:
-#     minutes = get_time_difference_from_db()
-#     if check_report(minutes):
-#         send_report()
-
-send_report()
+while True:
+    try:
+        minutes = get_time_difference_from_db()
+        if check_report(minutes):
+            send_report()
+    except:
+        print("No value configured in configuration!")

@@ -58,15 +58,16 @@ def plot_temp_with_data(data):
     axis.set_title(TEMPERATURE_LABEL)
     axis.set_xlabel(X_AXIS_LABEL)
     axis.grid(True)
-    axis.set_ylim([min(ys) - 5, max(ys) + 5])
+    if ys.__len__() != 0:
+        axis.set_ylim([min(ys) - 5, max(ys) + 5])
+        axis.axhspan(TEMP_SUPERIOR_RED_LOW, TEMP_SUPERIOR_RED_HIGH, facecolor='red', alpha=RED_ALPHA)
+        axis.axhspan(TEMP_SUPERIOR_YELLOW_LOW, TEMP_SUPERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
+        axis.axhspan(TEMP_GREEN_LOW, TEMP_GREEN_HIGH, facecolor='green', alpha=RED_ALPHA)
+        axis.axhspan(TEMP_INFERIOR_YELLOW_LOW, TEMP_INFERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
+        axis.axhspan(TEMP_INFERIOR_RED_LOW, TEMP_INFERIOR_RED_HIGH, facecolor='red', alpha=RED_ALPHA)
     xs = times
     axis.plot(xs, ys)
     fig.autofmt_xdate()
-    axis.axhspan(TEMP_SUPERIOR_RED_LOW, TEMP_SUPERIOR_RED_HIGH, facecolor='red', alpha=RED_ALPHA)
-    axis.axhspan(TEMP_SUPERIOR_YELLOW_LOW, TEMP_SUPERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
-    axis.axhspan(TEMP_GREEN_LOW, TEMP_GREEN_HIGH, facecolor='green', alpha=RED_ALPHA)
-    axis.axhspan(TEMP_INFERIOR_YELLOW_LOW, TEMP_INFERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
-    axis.axhspan(TEMP_INFERIOR_RED_LOW, TEMP_INFERIOR_RED_HIGH, facecolor='red', alpha=RED_ALPHA)
     return fig
 
 
@@ -78,16 +79,18 @@ def plot_hum_with_data(data):
     axis.set_title(HUMIDITY_LABEL)
     axis.set_xlabel(X_AXIS_LABEL)
     axis.grid(True)
-    axis.set_ylim([min(ys) - 5, max(ys) + 5])
+    if ys.__len__() != 0:
+        axis.set_ylim([min(ys) - 5, max(ys) + 5])
+        axis.axhspan(HUM_SUPERIOR_RED_LOW, max(ys) + 5 if max(ys) > 60 else 70, facecolor='red', alpha=RED_ALPHA)
+        axis.axhspan(HUM_INFERIOR_RED_LOW if min(ys) > HUM_INFERIOR_RED_LOW else min(ys) - 5, HUM_INFERIOR_RED_HIGH,
+                     facecolor='red', alpha=RED_ALPHA)
+        axis.axhspan(HUM_INFERIOR_YELLOW_LOW, HUM_INFERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
+        axis.axhspan(HUM_GREEN_LOW, HUM_GREEN_HIGH, facecolor='green', alpha=GREEN_ALPHA)
+        axis.axhspan(HUM_SUPERIOR_YELLOW_LOW, HUM_SUPERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
+
     xs = times
     axis.plot(xs, ys)
     fig.autofmt_xdate()
-    axis.axhspan(HUM_INFERIOR_RED_LOW if min(ys) > HUM_INFERIOR_RED_LOW else min(ys) - 5, HUM_INFERIOR_RED_HIGH,
-                 facecolor='red', alpha=RED_ALPHA)
-    axis.axhspan(HUM_INFERIOR_YELLOW_LOW, HUM_INFERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
-    axis.axhspan(HUM_GREEN_LOW, HUM_GREEN_HIGH, facecolor='green', alpha=GREEN_ALPHA)
-    axis.axhspan(HUM_SUPERIOR_YELLOW_LOW, HUM_SUPERIOR_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
-    axis.axhspan(HUM_SUPERIOR_RED_LOW, max(ys) + 5 if max(ys) > 60 else 70, facecolor='red', alpha=RED_ALPHA)
     return fig
 
 
@@ -99,13 +102,14 @@ def plot_light_with_data(data):
     axis.set_title(LIGHT_LABEL)
     axis.set_xlabel(X_AXIS_LABEL)
     axis.grid(True)
-    axis.set_ylim([min(ys) - 5, max(ys) + 5])
+    if ys.__len__() != 0:
+        axis.set_ylim([min(ys) - 5, max(ys) + 5])
+        axis.axhspan(LIGHT_RED_LOW, max(ys) if max(ys) > 10 else 20, facecolor='red', alpha=RED_ALPHA)
+        axis.axhspan(LIGHT_GREEN_LOW, LIGHT_GREEN_HIGH, facecolor='green', alpha=GREEN_ALPHA)
+        axis.axhspan(LIGHT_YELLOW_LOW, LIGHT_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
     xs = times
     axis.plot(xs, ys)
     fig.autofmt_xdate()
-    axis.axhspan(LIGHT_GREEN_LOW, LIGHT_GREEN_HIGH, facecolor='green', alpha=GREEN_ALPHA)
-    axis.axhspan(LIGHT_YELLOW_LOW, LIGHT_YELLOW_HIGH, facecolor='yellow', alpha=YELLOW_ALPHA)
-    axis.axhspan(LIGHT_RED_LOW, max(ys) if max(ys) > 10 else 20, facecolor='red', alpha=RED_ALPHA)
     return fig
 
 
@@ -136,7 +140,6 @@ def generate_report_graphs(initial, to):
     generate_hum(data, REPORT)
     generate_light(data, REPORT)
     generate_temp(data, REPORT)
-
 
 # init = datetime(2019, 10, 12, 00, 00, 00)
 # to = datetime(2019, 10, 19, 20, 00, 00)

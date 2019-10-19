@@ -1,6 +1,7 @@
 import sqlite3 as lite
 from datetime import datetime
 
+
 def getHistData(numSamples):
     con = lite.connect('../sensorsData.db')
     with con:
@@ -54,3 +55,23 @@ def get_report_data(from_datetime: datetime, to_datetime: datetime):
             "%Y-%m-%d %H:%M:%S") + "' AND '" + to_datetime.strftime(
             "%Y-%m-%d %H:%M:%S") + "'"
         return cur.execute(query).fetchall()
+
+
+def get_sleeping_range():
+    con = lite.connect('../sensorsData.db')
+    with con:
+        curs = con.cursor()
+        for row in curs.execute("SELECT * FROM sleeping_ranges"):
+            initial = row[0]
+            to = row[1]
+    # conn.close()
+    return initial, to
+
+
+def save_sleeping_range(date_from, date_to):
+    con = lite.connect('../sensorsData.db')
+    with con:
+        cur = con.cursor()
+        query = "INSERT INTO sleeping_ranges (initial, end)  VALUES (\'" + date_from + "\',\'" + date_to + "\')"
+        print(query)
+        cur.execute(query)

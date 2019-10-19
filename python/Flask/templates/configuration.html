@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Reports</title>
+    <title>Configuration</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('.static', filename='reports.css')}}">
+    <link rel="stylesheet" href="{{url_for('.static', filename='styles.css')}}">
 
 </head>
 <body>
@@ -19,13 +19,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/configuration.html">Configure<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/configuration">Configure<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/configuration">Reports<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/report_generator">Reports<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/">Log out</a>
@@ -34,35 +31,44 @@
     </div>
 </nav>
 
-<div class="col" style="background-color:#fff;margin:auto">
+<div class="col">
     <div style="height:20px"></div>
-    <h3>Report generator: </h3>
+    <h3>Edit sleeping configurations</h3>
+    <p>Enter your sleeping time to notify you with a report</p>
     <div style="height:10px"></div>
-
-    <p>Enter the range on which you want to generate the report:</p>
-    <div style="height:10px"></div>
-
-    <form name="generate" class="form-inline" method="POST" onsubmit="return validate(this)" target="_blank">
-        <div class="form-row" style="margin:0">
-            <p>From: </p>
-            <div style="width:10px"></div>
-            <label class="sr-only">From</label>
-            <input name="initial" type="datetime-local" id="id" class="form-control" placeholder="From" required=""
-                   autofocus="">
-            <div style="width:10px"></div>
-
-            <p>To: </p>
-            <div style="width:10px"></div>
-            <label class="sr-only">From</label>
-            <input name="to" type="datetime-local" id="ee" class="form-control" placeholder="To" required=""
-                   autofocus="">
-            <div style="width:10px"></div>
-            <button type="submit" class="btn btn-primary mb-2" onclick="validateDate();">Generate</button>
-        </div>
-    </form>
-    <hr>
 </div>
-<footer class="text-muted bg-light" style="position:absolute;bottom:0;left:0;right:0;">
+
+<div class="col">
+    <form name="sleep_range" method="POST">
+        <div class="form-row">
+            <!--            <div class="col-md-4">-->
+            <!--                <div class="form-group">-->
+            <!--                    <label for="formGroupExampleInput2">Email: </label>-->
+            <!--                    <input type="email" class="form-control" id="email" placeholder="example@mail.com">-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Time from: </label>
+                    <input name="initial" type="time" class="form-control" id="formGroupExampleInput"
+                           placeholder="Example input">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Time to: </label>
+                    <input name="end" type="time" class="form-control" id="formGroupExampleInput2"
+                           placeholder="Another input">
+                </div>
+            </div>
+        </div>
+        <div style="width:10px"></div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+<footer class="text-muted bg-light">
     <div class="container">
         <p class="float-right">
             <a href="#">Back to top</a>
@@ -70,7 +76,6 @@
         <p>©2019 Sleepmonitor Inc.</p>
     </div>
 </footer>
-
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -83,18 +88,11 @@
         crossorigin="anonymous"></script>
 
 <script>
-    function validate(form){
-    console.log("GG");
-    if(document.generate.initial.value < document.generate.to.value){
-    console.log("Todo ok");
-    return true;
-    }else{
-    alert("From can not be after to");
-    return false;
+    function validate(){
+    console.log(document.sleep_range.initial.value);
+    console.log(document.sleep_range.end.value);
     }
-    }
+
 </script>
 </body>
-
-
 </html>

@@ -5,7 +5,7 @@ from flask import Flask, render_template, make_response, request, redirect, flas
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 from python.Flask import utils
-from python.Flask.db_manager import getLastData, maxRowsTable, getHistData, get_report_data
+from python.Flask.db_manager import getLastData, maxRowsTable, getHistData, get_report_data, save_sleeping_range
 from python.Flask.graph_functions import plot_temp_with_data, plot_hum_with_data, plot_light_with_data
 from python.Flask.utils import parse_time
 
@@ -32,6 +32,12 @@ def index():
 
 @app.route("/configuration")
 def configuration():
+    return render_template('configuration.html')
+
+
+@app.route("/configuration", methods=['POST'])
+def other_configuration():
+    save_sleeping_range(request.form.get('initial'), request.form.get('end'))
     return render_template('configuration.html')
 
 
@@ -72,7 +78,7 @@ def my_form_post():
     time, temp, hum, light = getLastData()
 
     template_data = {
-        'time': utils.PRETTY_FORMAT.format(parse_time(time,utils.HOME_FORMAT)),
+        'time': utils.PRETTY_FORMAT.format(parse_time(time, utils.HOME_FORMAT)),
         'temp': temp,
         'hum': hum,
         'light': light,
@@ -129,7 +135,7 @@ def generate_a_report():
 def report_temp():
     global initial
     global to
-    data = get_report_data(parse_time(initial, utils.TIME_STAMP_FORMAT),parse_time(to, utils.TIME_STAMP_FORMAT))
+    data = get_report_data(parse_time(initial, utils.TIME_STAMP_FORMAT), parse_time(to, utils.TIME_STAMP_FORMAT))
     fig = plot_temp_with_data(data)
     canvas = FigureCanvas(fig)
     output = io.BytesIO()
@@ -143,7 +149,7 @@ def report_temp():
 def report_hum():
     global initial
     global to
-    data = get_report_data(parse_time(initial, utils.TIME_STAMP_FORMAT),parse_time(to, utils.TIME_STAMP_FORMAT))
+    data = get_report_data(parse_time(initial, utils.TIME_STAMP_FORMAT), parse_time(to, utils.TIME_STAMP_FORMAT))
     fig = plot_hum_with_data(data)
     canvas = FigureCanvas(fig)
     output = io.BytesIO()
@@ -157,7 +163,7 @@ def report_hum():
 def report_light():
     global initial
     global to
-    data = get_report_data(parse_time(initial, utils.TIME_STAMP_FORMAT),parse_time(to, utils.TIME_STAMP_FORMAT))
+    data = get_report_data(parse_time(initial, utils.TIME_STAMP_FORMAT), parse_time(to, utils.TIME_STAMP_FORMAT))
     fig = plot_light_with_data(data)
     canvas = FigureCanvas(fig)
     output = io.BytesIO()

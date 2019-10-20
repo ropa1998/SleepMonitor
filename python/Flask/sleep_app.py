@@ -1,15 +1,14 @@
-import io
-import os
-
 import datetime as datetime
+import io
+
 from flask import Flask, render_template, make_response, request, redirect, flash, url_for
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
-from python.Flask import date_parser, graph_functions
-from python.Flask.db_manager import getLastData, maxRowsTable, getHistData, get_report_data, save_sleeping_range, \
-    get_sleeping_range
-from python.Flask.graph_functions import plot_temp_with_data, plot_hum_with_data, plot_light_with_data
+from python.Flask import date_parser
 from python.Flask.date_parser import parse_time
+from python.Flask.db_manager import get_sleeping_range, save_sleeping_range, getLastData, maxRowsTable, getHistData, \
+    get_report_data
+from python.Flask.graph_functions import plot_temp_with_data, plot_hum_with_data, plot_light_with_data
 
 app = Flask(__name__)
 
@@ -207,4 +206,4 @@ if __name__ == '__main__':
     app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
 
-    app.run(debug=True)
+    app.run(host='0.0.0.0')

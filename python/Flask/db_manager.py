@@ -65,8 +65,9 @@ def get_sleeping_range():
             email = row[0]
             initial = row[1]
             to = row[2]
+            return email, initial, to
     # conn.close()
-    return email, initial, to
+
 
 
 def save_sleeping_range(mail, date_from, date_to):

@@ -3,6 +3,7 @@
 #
 # It automatically creates, at this file system level, a file called 'sensorsData.db' that works as the database for
 # the project (we are using SQLite3).
+# This has two tables: sensors_data (datetime, temperature, humidity and light) and sleeping_ranges (email, initial, end).
 
 import sqlite3 as lite
 import sys

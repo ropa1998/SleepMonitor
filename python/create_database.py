@@ -1,8 +1,8 @@
 ## @package create_database
 #  This module takes care of creating the database that the whole project will use.
 #
-# It automatically creates, at this level, a file called sensorsData.db.with all the information that the running
-# project will create.
+# It automatically creates, at this file system level, a file called 'sensorsData.db' that works as the database for
+# the project (we are using SQLite3).
 
 import sqlite3 as lite
 import sys

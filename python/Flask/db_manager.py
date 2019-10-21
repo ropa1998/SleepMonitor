@@ -80,10 +80,10 @@ def get_sleeping_range():
             return email, initial, to
     # conn.close()
 
-## This method returns the information of the only tuple in 'sleeping_ranges'.
-#  @param mail The datetime from which the query will be evaluated.
-#  @param date_from The datetime from which the query will be evaluated.
-#  @param date_to The datetime from which the query will be evaluated.
+## This method sets the only row in 'sleeping_ranges' to the values that are passed.
+#  @param mail The email for the row.
+#  @param date_from The 'from' for the row.
+#  @param date_to The 'to' for the row.
 def save_sleeping_range(mail, date_from, date_to):
     con = lite.connect('../sensorsData.db')
     with con:

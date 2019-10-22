@@ -1,3 +1,5 @@
+## @package sleep_app
+# This is the main module, which takes care of all the app routing
 import datetime as datetime
 import io
 
@@ -27,11 +29,13 @@ to = datetime.datetime.now()
 
 # main route
 @app.route("/")
+## This method renders the main page, index.html.
 def index():
     return render_template('index.html')
 
 
 @app.route("/configuration")
+## This method gets the configuration information from the database and renders the html.
 def configuration():
     email, start, end = get_sleeping_range()
     template_data = {
@@ -43,6 +47,7 @@ def configuration():
 
 
 @app.route("/configuration", methods=['POST'])
+## This method saves a given configuration to the database and sends a message back to the user to confirm that the configuration was saves successfully .
 def modify_configuration():
     save_sleeping_range(request.form.get("mail"), request.form.get('initial'), request.form.get('end'))
     flash("Your information was updated successfully")
@@ -50,6 +55,7 @@ def modify_configuration():
 
 
 @app.route("/", methods=['POST'])
+## This method validates the username and password and renders the home scren or login screen with an error message.
 def login_post():
     email = request.form.get('username')
     password = request.form.get('password')
@@ -63,6 +69,7 @@ def login_post():
 
 
 @app.route("/home")
+## This method searches the database for: the latest data and the last given number of samples to render the home screen.
 def home():
     time, temp, hum, light = getLastData()
     template_data = {
@@ -76,6 +83,7 @@ def home():
 
 
 @app.route('/home', methods=['POST'])
+## This method updates the onld data by searching the database for: the latest data and the last given number of samples to render the home screen.
 def my_form_post():
     global numSamples
     numSamples = int(request.form['numSamples'])
@@ -101,11 +109,13 @@ def my_form_post():
 
 
 @app.route('/report_generator')
+## This method renders the report generator screen.
 def generate_a_report():
     return render_template('report_generator.html')
 
 
 @app.route('/report_generator', methods=['POST'])
+## This method receives an range and renders the report screen.
 def generate_post_report():
     global initial
     initial = request.form['initial']
@@ -122,6 +132,7 @@ def generate_post_report():
 
 
 @app.route('/plot/temp')
+## This method renders an image with a plot of the temperature to be used in the home screen.
 def plot_temp():
     data = getHistData(numSamples)
     fig = plot_temp_with_data(data)
@@ -134,6 +145,7 @@ def plot_temp():
 
 
 @app.route('/plot/hum')
+## This method renders an image with a plot of the humidity to be used in the home screen.
 def plot_hum():
     data = getHistData(numSamples)
     fig = plot_hum_with_data(data)
@@ -146,6 +158,7 @@ def plot_hum():
 
 
 @app.route('/plot/light')
+## This method renders an image with a plot of the light to be used in the home screen.
 def plot_light():
     data = getHistData(numSamples)
     fig = plot_light_with_data(data)
@@ -158,6 +171,7 @@ def plot_light():
 
 
 @app.route('/report/temp')
+## This method renders an image with a plot of the temperature to be used in the report.
 def report_temp():
     global initial
     global to
@@ -173,6 +187,7 @@ def report_temp():
 
 
 @app.route('/report/hum')
+## This method renders an image with a plot of the humidity to be used in the report.
 def report_hum():
     global initial
     global to
@@ -188,6 +203,7 @@ def report_hum():
 
 
 @app.route('/report/light')
+## This method renders an image with a plot of the light to be used in the report.
 def report_light():
     global initial
     global to

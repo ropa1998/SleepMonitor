@@ -1,10 +1,12 @@
-import re
+## @package serial_reader
+# This module takes care of reading data from the serial port, formatting it and saving it to the database
 import sqlite3 as lite
-import sys
 
 import serial
 
 
+## This method saves the sensors data into the database
+# @param read_list An array of values containing the temperature, humidity and light values.
 def save_data(read_list):
     con = lite.connect('../sensorsData.db')
     with con:

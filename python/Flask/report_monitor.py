@@ -1,3 +1,5 @@
+## @package report_monitor
+# This module takes care of checking and sending a report by email.
 import os
 from datetime import datetime
 
@@ -8,6 +10,10 @@ from python.Flask import db_manager, email_sender, graph_functions
 WAIT_TO_SEND_REPORT = 5
 
 
+## This method generates and sends a report
+# @param email The email address of destination.
+# @param initial The initial time for the range from where the report will be generated
+# @param to The end time for the range from where the report will be generated
 def send_report(email, initial, to):
     now = datetime.now()
     to_datetime = datetime(now.year, now.month, now.day, int(to[0:2]), int(to[3:5]), 00)
@@ -24,10 +30,14 @@ def send_report(email, initial, to):
                             [hum_graph, light_graph, temp_graph])
 
 
+## This method checks if a certain time has elapsed in order to send the report by mail
+# @param minutes The minutes to check
 def check_report(minutes):
     return minutes == WAIT_TO_SEND_REPORT
 
 
+## This method gets the time difference between a given time and now
+# @param to The time to check
 def get_time_difference(to):
     now = datetime.now()
     to_datetime = datetime(now.year, now.month, now.day, int(to[0:2]), int(to[3:5]), 00)

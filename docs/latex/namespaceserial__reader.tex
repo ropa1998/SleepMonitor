@@ -1,0 +1,45 @@
+\hypertarget{namespaceserial__reader}{}\section{serial\+\_\+reader Namespace Reference}
+\label{namespaceserial__reader}\index{serial\+\_\+reader@{serial\+\_\+reader}}
+
+
+This module takes care of reading data from the serial port, formatting it and saving it to the database.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceserial__reader_a7c6e4b70b62301983b7195509698fdee}{save\+\_\+data} (read\+\_\+list)
+\begin{DoxyCompactList}\small\item\em This method saves the sensors data into the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespaceserial__reader_a7a0ec18c382bd64638b5b4c9b16faa8a}\label{namespaceserial__reader_a7a0ec18c382bd64638b5b4c9b16faa8a}} 
+{\bfseries ser} = serial.\+Serial(\textquotesingle{}/dev/tty\+U\+S\+B0\textquotesingle{}, 9600)
+\item 
+\mbox{\Hypertarget{namespaceserial__reader_aa2775e8c4e9269891e0b0e7858c9d215}\label{namespaceserial__reader_aa2775e8c4e9269891e0b0e7858c9d215}} 
+{\bfseries read\+\_\+serial} = str(ser.\+readline().rstrip()).replace(\char`\"{}\textquotesingle{}\char`\"{}, \char`\"{}\char`\"{}).replace(\char`\"{}b\char`\"{}, \char`\"{}\char`\"{})
+\item 
+\mbox{\Hypertarget{namespaceserial__reader_ab0a8815d0881e0d0c7a67658751eb58d}\label{namespaceserial__reader_ab0a8815d0881e0d0c7a67658751eb58d}} 
+{\bfseries read\+\_\+list} = read\+\_\+serial.\+split(\char`\"{},\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module takes care of reading data from the serial port, formatting it and saving it to the database. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespaceserial__reader_a7c6e4b70b62301983b7195509698fdee}\label{namespaceserial__reader_a7c6e4b70b62301983b7195509698fdee}} 
+\index{serial\+\_\+reader@{serial\+\_\+reader}!save\+\_\+data@{save\+\_\+data}}
+\index{save\+\_\+data@{save\+\_\+data}!serial\+\_\+reader@{serial\+\_\+reader}}
+\subsubsection{\texorpdfstring{save\+\_\+data()}{save\_data()}}
+{\footnotesize\ttfamily def serial\+\_\+reader.\+save\+\_\+data (\begin{DoxyParamCaption}\item[{}]{read\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+This method saves the sensors data into the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em read\+\_\+list} & An array of values containing the temperature, humidity and light values. \\
+\hline
+\end{DoxyParams}

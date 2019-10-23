@@ -1,0 +1,59 @@
+\hypertarget{namespaceemail__sender}{}\section{email\+\_\+sender Namespace Reference}
+\label{namespaceemail__sender}\index{email\+\_\+sender@{email\+\_\+sender}}
+
+
+This module takes care of sending emails.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceemail__sender_a96c0c162386a3200522f5fcceae4a193}{send\+\_\+email}
+\begin{DoxyCompactList}\small\item\em This method sends emails with the paramaters that are passed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespaceemail__sender_a3ef5b96b516cf94aa76d380fc146c8d9}\label{namespaceemail__sender_a3ef5b96b516cf94aa76d380fc146c8d9}} 
+string {\bfseries S\+U\+B\+J\+E\+CT} = \char`\"{}Your Sleep\+Monitor daily report is ready!\char`\"{}
+\item 
+\mbox{\Hypertarget{namespaceemail__sender_a7f4ab8cd89c0c818a06a2c46f9a499bd}\label{namespaceemail__sender_a7f4ab8cd89c0c818a06a2c46f9a499bd}} 
+string {\bfseries B\+O\+DY} = \char`\"{}Take a look at the values for your last sleep session!\char`\"{}
+\item 
+\mbox{\Hypertarget{namespaceemail__sender_a3e710890e85c3b4f7d7a62ef2143b1a0}\label{namespaceemail__sender_a3e710890e85c3b4f7d7a62ef2143b1a0}} 
+string {\bfseries U\+S\+E\+R\+N\+A\+ME} = \char`\"{}sleepmonitor\+UA@gmail.\+com\char`\"{}
+\item 
+\mbox{\Hypertarget{namespaceemail__sender_a67cfc42f1e1020a8629b7e465d301589}\label{namespaceemail__sender_a67cfc42f1e1020a8629b7e465d301589}} 
+{\bfseries P\+A\+S\+S\+W\+O\+RD} = keyring.\+get\+\_\+password(\char`\"{}gmail\char`\"{}, U\+S\+E\+R\+N\+A\+ME)
+\item 
+\mbox{\Hypertarget{namespaceemail__sender_a90a63e9aa77ce7ca7695ce2e8b354efe}\label{namespaceemail__sender_a90a63e9aa77ce7ca7695ce2e8b354efe}} 
+{\bfseries yag} = yagmail.\+S\+M\+TP(U\+S\+E\+R\+N\+A\+ME, P\+A\+S\+S\+W\+O\+RD)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module takes care of sending emails. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespaceemail__sender_a96c0c162386a3200522f5fcceae4a193}\label{namespaceemail__sender_a96c0c162386a3200522f5fcceae4a193}} 
+\index{email\+\_\+sender@{email\+\_\+sender}!send\+\_\+email@{send\+\_\+email}}
+\index{send\+\_\+email@{send\+\_\+email}!email\+\_\+sender@{email\+\_\+sender}}
+\subsubsection{\texorpdfstring{send\+\_\+email()}{send\_email()}}
+{\footnotesize\ttfamily def email\+\_\+sender.\+send\+\_\+email (\begin{DoxyParamCaption}\item[{}]{to }\end{DoxyParamCaption})}
+
+
+
+This method sends emails with the paramaters that are passed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em to} & The receiver of the email \\
+\hline
+{\em subject} & The subject of the email \\
+\hline
+{\em body} & The body of the email \\
+\hline
+{\em attachments} & The attachments for the emails, passed as a list with their absolute paths. \\
+\hline
+\end{DoxyParams}

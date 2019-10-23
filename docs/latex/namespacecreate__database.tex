@@ -1,0 +1,22 @@
+\hypertarget{namespacecreate__database}{}\section{create\+\_\+database Namespace Reference}
+\label{namespacecreate__database}\index{create\+\_\+database@{create\+\_\+database}}
+
+
+This module takes care of creating the database that the whole project will use.  
+
+
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacecreate__database_afbd3d7c13ac3ee3fceefdd1e50856485}\label{namespacecreate__database_afbd3d7c13ac3ee3fceefdd1e50856485}} 
+{\bfseries con} = lite.\+connect(\textquotesingle{}sensors\+Data.\+db\textquotesingle{})
+\item 
+\mbox{\Hypertarget{namespacecreate__database_a6d16d5f7424ea858d0e119e66ddfed31}\label{namespacecreate__database_a6d16d5f7424ea858d0e119e66ddfed31}} 
+{\bfseries cur} = con.\+cursor()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module takes care of creating the database that the whole project will use. 
+
+It automatically creates, at this file system level, a file called \textquotesingle{}sensors\+Data.\+db\textquotesingle{} that works as the database for the project (we are using S\+Q\+Lite3). This has two tables\+: sensors\+\_\+data (datetime, temperature, humidity and light) and sleeping\+\_\+ranges (email, initial, end). 

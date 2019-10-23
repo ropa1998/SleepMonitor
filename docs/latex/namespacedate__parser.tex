@@ -1,0 +1,81 @@
+\hypertarget{namespacedate__parser}{}\section{date\+\_\+parser Namespace Reference}
+\label{namespacedate__parser}\index{date\+\_\+parser@{date\+\_\+parser}}
+
+
+This module takes care of parsing datetimes in string fomat to datetime objects.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacedate__parser_ae2ebc5626493efaa6f55506c540cbf39}{parse\+\_\+time}
+\begin{DoxyCompactList}\small\item\em This method takes a string that represents a datetime in a specific format and returns it as a datetime. \end{DoxyCompactList}\item 
+def \hyperlink{namespacedate__parser_af75a6146e5b426c2256da4016a0e1d88}{string\+\_\+to\+\_\+format}
+\begin{DoxyCompactList}\small\item\em This method takes a string that represents a datetime in a specific format and returns another string that represent the same datetime with the P\+R\+E\+T\+T\+Y\+\_\+\+F\+O\+R\+M\+AT. \end{DoxyCompactList}\item 
+def \hyperlink{namespacedate__parser_ae84059d175f6c4899d13c0a80de6e054}{parse\+\_\+standard}
+\begin{DoxyCompactList}\small\item\em This method takes a string that represents a datetime in S\+T\+A\+N\+D\+A\+R\+D\+\_\+\+F\+O\+R\+M\+AT and returns it as a datetime. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacedate__parser_a9c6653beea157b562a0225872d24c7d0}\label{namespacedate__parser_a9c6653beea157b562a0225872d24c7d0}} 
+string {\bfseries T\+I\+M\+E\+\_\+\+S\+T\+A\+M\+P\+\_\+\+F\+O\+R\+M\+AT} = \textquotesingle{}\%Y-\/\%m-\/\%dT\%H\+:\%M\textquotesingle{}
+\item 
+\mbox{\Hypertarget{namespacedate__parser_aa7f21d65275bcab56f1612f84812a21e}\label{namespacedate__parser_aa7f21d65275bcab56f1612f84812a21e}} 
+string {\bfseries S\+T\+A\+N\+D\+A\+R\+D\+\_\+\+F\+O\+R\+M\+AT} = \textquotesingle{}\%Y-\/\%m-\/\%d \%H\+:\%M\+:\%S\textquotesingle{}
+\item 
+\mbox{\Hypertarget{namespacedate__parser_a4c7b6acfb4735d035fb751653fc76221}\label{namespacedate__parser_a4c7b6acfb4735d035fb751653fc76221}} 
+string {\bfseries P\+R\+E\+T\+T\+Y\+\_\+\+F\+O\+R\+M\+AT} = \textquotesingle{}\{\+:\%A, \%d \%B \%Y -\/ \%H\+:\%M \%p\}\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module takes care of parsing datetimes in string fomat to datetime objects. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacedate__parser_ae84059d175f6c4899d13c0a80de6e054}\label{namespacedate__parser_ae84059d175f6c4899d13c0a80de6e054}} 
+\index{date\+\_\+parser@{date\+\_\+parser}!parse\+\_\+standard@{parse\+\_\+standard}}
+\index{parse\+\_\+standard@{parse\+\_\+standard}!date\+\_\+parser@{date\+\_\+parser}}
+\subsubsection{\texorpdfstring{parse\+\_\+standard()}{parse\_standard()}}
+{\footnotesize\ttfamily def date\+\_\+parser.\+parse\+\_\+standard (\begin{DoxyParamCaption}\item[{}]{date\+\_\+str }\end{DoxyParamCaption})}
+
+
+
+This method takes a string that represents a datetime in S\+T\+A\+N\+D\+A\+R\+D\+\_\+\+F\+O\+R\+M\+AT and returns it as a datetime. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date\+\_\+str} & The datetime as a string with a specific format. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacedate__parser_ae2ebc5626493efaa6f55506c540cbf39}\label{namespacedate__parser_ae2ebc5626493efaa6f55506c540cbf39}} 
+\index{date\+\_\+parser@{date\+\_\+parser}!parse\+\_\+time@{parse\+\_\+time}}
+\index{parse\+\_\+time@{parse\+\_\+time}!date\+\_\+parser@{date\+\_\+parser}}
+\subsubsection{\texorpdfstring{parse\+\_\+time()}{parse\_time()}}
+{\footnotesize\ttfamily def date\+\_\+parser.\+parse\+\_\+time (\begin{DoxyParamCaption}\item[{}]{date\+\_\+str }\end{DoxyParamCaption})}
+
+
+
+This method takes a string that represents a datetime in a specific format and returns it as a datetime. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date\+\_\+str} & The datetime as a string with a specific format. \\
+\hline
+{\em format} & The format on which the datetime arrives \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacedate__parser_af75a6146e5b426c2256da4016a0e1d88}\label{namespacedate__parser_af75a6146e5b426c2256da4016a0e1d88}} 
+\index{date\+\_\+parser@{date\+\_\+parser}!string\+\_\+to\+\_\+format@{string\+\_\+to\+\_\+format}}
+\index{string\+\_\+to\+\_\+format@{string\+\_\+to\+\_\+format}!date\+\_\+parser@{date\+\_\+parser}}
+\subsubsection{\texorpdfstring{string\+\_\+to\+\_\+format()}{string\_to\_format()}}
+{\footnotesize\ttfamily def date\+\_\+parser.\+string\+\_\+to\+\_\+format (\begin{DoxyParamCaption}\item[{}]{string\+\_\+date }\end{DoxyParamCaption})}
+
+
+
+This method takes a string that represents a datetime in a specific format and returns another string that represent the same datetime with the P\+R\+E\+T\+T\+Y\+\_\+\+F\+O\+R\+M\+AT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string\+\_\+date} & The datetime as a string with a specific format that will be converted. \\
+\hline
+\end{DoxyParams}

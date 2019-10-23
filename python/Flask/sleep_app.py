@@ -6,11 +6,11 @@ import io
 from flask import Flask, render_template, make_response, request, redirect, flash, url_for
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
-from python.Flask import date_parser
-from python.Flask.date_parser import parse_time
-from python.Flask.db_manager import get_sleeping_range, save_sleeping_range, getLastData, maxRowsTable, getHistData, \
-    get_report_data
-from python.Flask.graph_functions import plot_temp_with_data, plot_hum_with_data, plot_light_with_data
+from SleepMonitor.python.Flask import date_parser
+from SleepMonitor.python.Flask.date_parser import parse_time
+from SleepMonitor.python.Flask.db_manager import maxRowsTable, get_sleeping_range, save_sleeping_range, getLastData, \
+    getHistData, get_report_data
+from SleepMonitor.python.Flask.graph_functions import plot_temp_with_data, plot_hum_with_data, plot_light_with_data
 
 app = Flask(__name__)
 
@@ -37,7 +37,12 @@ def index():
 @app.route("/configuration")
 ## This method gets the configuration information from the database and renders the html.
 def configuration():
-    email, start, end = get_sleeping_range()
+    # TODO que get_sleeping_ranges no se rompa si devuelve nulls.
+    # TODO que todos los accesos a base de datos esten preparados para no traer nada.
+    try:
+        email, start, end = get_sleeping_range()
+    except:
+        email, start, end = "", "", ""
     template_data = {
         'email': email,
         'initial': start,
@@ -73,7 +78,7 @@ def login_post():
 def home():
     time, temp, hum, light = getLastData()
     template_data = {
-        'time': date_parser.PRETTY_FORMAT.format(parse_time(time, date_parser.HOME_FORMAT)),
+        'time': date_parser.PRETTY_FORMAT.format(parse_time(time, date_parser.STANDARD_FORMAT)),
         'temp': temp,
         'hum': hum,
         'light': light,
@@ -94,18 +99,13 @@ def my_form_post():
     time, temp, hum, light = getLastData()
 
     template_data = {
-        'time': date_parser.PRETTY_FORMAT.format(parse_time(time, date_parser.HOME_FORMAT)),
+        'time': date_parser.PRETTY_FORMAT.format(parse_time(time, date_parser.STANDARD_FORMAT)),
         'temp': temp,
         'hum': hum,
         'light': light,
         'numSamples': numSamples,
     }
     return render_template('home.html', **template_data)
-
-
-# TODO refactor all plots in one method.
-# TODO cambiar "Samples" por timestamp. Formatear para que quede lindo.
-# TODO armar documentacion de Arduino, python, y Base de Datos
 
 
 @app.route('/report_generator')

@@ -3,8 +3,8 @@
 
 import matplotlib.pyplot as plt
 
-from python.Flask import date_parser, db_manager
-from python.Flask.db_manager import getDataAsTuple, getHistData
+from SleepMonitor.python.Flask import date_parser, db_manager
+from SleepMonitor.python.Flask.db_manager import getDataAsTuple, getHistData
 
 TEMP_GREEN_LOW = 16
 TEMP_GREEN_HIGH = 20

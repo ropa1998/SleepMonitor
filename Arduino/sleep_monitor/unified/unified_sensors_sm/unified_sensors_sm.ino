@@ -1,3 +1,6 @@
+/**
+@package unified_sensors_sm.ino This module reads the temperature, humidity and light values
+*/
 #include <DHT.h>
 #define DHTPIN 2
 #define LDRPIN A5
@@ -13,26 +16,36 @@
 DHT dht(DHTPIN, DHTTYPE);
 
 
-
+/**
+This function sets up the serial port to receive the information to be read
+*/
 void setup() {
   Serial.begin(9600);
   dht.begin();
 
 }
 
+/**
+This function loops and reads the value of the temperature, humidity and light
+*/
 void loop() {
   delay(dly);
   Serial.print(getTemp() + "," + getHumd() +  "," + getLightREF());
   Serial.print("\n");
 }
 
+/**
+This function reads the value of the temperature
+*/
 String getTemp() {
 
   float t = dht.readTemperature();
   return String(t);
 
 }
-
+/**
+This function reads the value of the humidity
+*/
 String getHumd() {
 
   float h = dht.readHumidity();
@@ -40,6 +53,9 @@ String getHumd() {
 
 }
 
+/**
+This function reads the value of the light
+*/
 String getLight() {
   int LDR = analogRead(LDRPIN); // read the value from the sensor
   double Vout = (LDR * 0.0048828125);
@@ -48,6 +64,9 @@ String getLight() {
   return String(Lux * 100);
 }
 
+/**
+This function reads the value of the light
+*/
 String getLightREF() {
   double rawData = analogRead(LDRPIN);
   // MAX_ADC_READING is 1023 and ADC_REF_VOLTAGE is 5

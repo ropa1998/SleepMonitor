@@ -1,4 +1,6 @@
-
+/**
+@package temperature_sensor.ino This module reads the temperature and humidity values from the DHT11 sensor
+*/
 // Incluimos librería
 #include <DHT.h>
  
@@ -10,11 +12,17 @@
 // Inicializamos el sensor DHT11
 DHT dht(DHTPIN, DHTTYPE);
 
+/**
+This function sets up the serial port to receive the information to be read
+*/
 void setup() {
 Serial.begin(9600);
   dht.begin();
 }
 
+/**
+This function loops and reads the value of the temperature and humidity
+*/
 void loop() {
     // Esperamos 5 segundos entre medidas
   delay(5000);

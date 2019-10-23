@@ -103,7 +103,7 @@ def plot_light_with_data(data):
     axis.set_title(LIGHT_LABEL)
     axis.set_xlabel(X_AXIS_LABEL)
     axis.grid(True)
-    axis.set_ylim([min(ys) - 5, max(ys) + 5])
+    axis.set_ylim([0, max(ys) + 5])
     xs = times
     axis.plot(xs, ys)
     fig.autofmt_xdate()

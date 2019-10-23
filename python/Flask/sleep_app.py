@@ -29,13 +29,13 @@ to = datetime.datetime.now()
 
 # main route
 @app.route("/")
-## This method renders the main page, index.html.
+## This method renders the main page, index.docs.
 def index():
-    return render_template('index.html')
+    return render_template('index.docs')
 
 
 @app.route("/configuration")
-## This method gets the configuration information from the database and renders the html.
+## This method gets the configuration information from the database and renders the docs.
 def configuration():
     # TODO que get_sleeping_ranges no se rompa si devuelve nulls.
     # TODO que todos los accesos a base de datos esten preparados para no traer nada.
@@ -48,7 +48,7 @@ def configuration():
         'initial': start,
         'end': end,
     }
-    return render_template('configuration.html', **template_data)
+    return render_template('configuration.docs', **template_data)
 
 
 @app.route("/configuration", methods=['POST'])
@@ -84,7 +84,7 @@ def home():
         'light': light,
         'numSamples': numSamples,
     }
-    return render_template('home.html', **template_data)
+    return render_template('home.docs', **template_data)
 
 
 @app.route('/home', methods=['POST'])
@@ -105,13 +105,13 @@ def my_form_post():
         'light': light,
         'numSamples': numSamples,
     }
-    return render_template('home.html', **template_data)
+    return render_template('home.docs', **template_data)
 
 
 @app.route('/report_generator')
 ## This method renders the report generator screen.
 def generate_a_report():
-    return render_template('report_generator.html')
+    return render_template('report_generator.docs')
 
 
 @app.route('/report_generator', methods=['POST'])
@@ -128,7 +128,7 @@ def generate_post_report():
     }
 
     print(template_data)
-    return render_template('report.html', **template_data)
+    return render_template('report.docs', **template_data)
 
 
 @app.route('/plot/temp')

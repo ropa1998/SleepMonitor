@@ -1,4 +1,6 @@
-# Sleep Monitor
+
+
+# Sleep Monitor {#mainpage}
 This is a simple project that uses Arduino and a Linux-based Single-Board computer to monitor ambient variables that influence your sleep quality. With this information the system can send alarms with insight about your sleeping ambient in order to improve it.
 
 ## Table of Contents
@@ -49,17 +51,41 @@ After that you will need to connect via USB your Arduino to your SBC.
  
  This will allow you to use the project in your local network: you will need to access, from any local network connected device, the IP <SBC-IP>:5000, which will show you the project working.
  
- ![Sample main page](https://raw.githubusercontent.com/ropa1998/SleepMonitor/master/Images/sample_page.png)
+ ### Home Page
+ 
+ ![Sample home page](https://raw.githubusercontent.com/ropa1998/SleepMonitor/master/Images/sample_home_page.png)
  
  The first thing you can do is see the actual state of the environment. The colour of the value representing each value tells you how ideal is that value for sleeping
  * Green is ideal
  * Yellow is not so bad
  * Red is not a recommendable value
  
- You can also see three tables that show you a history of all three variables.      
+ ![Sample home page with graphs](https://raw.githubusercontent.com/ropa1998/SleepMonitor/master/Images/graphs_main_page.png)
+ 
+ You can also see three tables that show you a history of all three variables. They get generated when you ask for the last N registers.     
+ 
+ ### Reports
+ 
+ You can also create your own reports based on dates from a time period you select.
+ 
+ ![Sample report configuration page](https://raw.githubusercontent.com/ropa1998/SleepMonitor/master/Images/sample_report_config_page.png)
+
+ After that, on another page, you will receive a report which you can later download if you wish so.
+ 
+ ![Sample report](https://raw.githubusercontent.com/ropa1998/SleepMonitor/master/Images/sample_report_page.png)
+ 
+ ### Configure
+ 
+ In order to receive emails with your report after every sleep session you must register the sleeping ranges for every day and the email you want to have the email with the report sent.
+ 
+ ![Sample config page](https://raw.githubusercontent.com/ropa1998/SleepMonitor/master/Images/sample_config_page.png)
+
+Five minutes after your sleep session is over you will receive an email with the report
+
+![Sample config page](https://raw.githubusercontent.com/ropa1998/SleepMonitor/master/Images/sample_email_image.png)
 
 
-### Contributors
+## Contributors
 
 This project exists thanks to all the people who contribute. 
 * [Franz Soto Leal](https://github.com/FranzSL)

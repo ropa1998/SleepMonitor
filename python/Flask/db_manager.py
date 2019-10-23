@@ -7,7 +7,7 @@ from datetime import datetime
 
 ## This method takes an int 'n' and returns the last 'n' tuples in sensors_data.
 #  @param numSamples The 'n' last sensors entries.
-from python.Flask import date_parser
+from SleepMonitor.python.Flask import date_parser
 
 
 def getHistData(numSamples):

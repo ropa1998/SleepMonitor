@@ -73,12 +73,16 @@ def get_sleeping_range():
     con = lite.connect('../sensorsData.db')
     with con:
         curs = con.cursor()
-        for row in curs.execute("SELECT * FROM sleeping_ranges"):
+        rows = curs.execute("SELECT * FROM sleeping_ranges")
+        for row in rows:
             email = row[0]
             initial = row[1]
             to = row[2]
             return email, initial, to
-    # conn.close()
+
+
+# conn.close()
+
 
 ## This method sets the only row in 'sleeping_ranges' to the values that are passed.
 #  @param mail The email for the row.

@@ -1,0 +1,91 @@
+\hypertarget{namespacereport__monitor}{}\section{report\+\_\+monitor Namespace Reference}
+\label{namespacereport__monitor}\index{report\+\_\+monitor@{report\+\_\+monitor}}
+
+
+This module takes care of checking and sending a report by email.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacereport__monitor_a0319e267658eed6a0af3008734a31423}{send\+\_\+report} (email, initial, to)
+\begin{DoxyCompactList}\small\item\em This method generates and sends a report. \end{DoxyCompactList}\item 
+def \hyperlink{namespacereport__monitor_ac48ed477bccc0f581f78aaed34ff934a}{check\+\_\+report} (minutes)
+\begin{DoxyCompactList}\small\item\em This method checks if a certain time has elapsed in order to send the report by mail. \end{DoxyCompactList}\item 
+def \hyperlink{namespacereport__monitor_aba839cc4a115d3c05481ad49d367f567}{get\+\_\+time\+\_\+difference} (to)
+\begin{DoxyCompactList}\small\item\em This method gets the time difference between a given time and now. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacereport__monitor_ab2763947722a7e3a3d23935f768e6357}\label{namespacereport__monitor_ab2763947722a7e3a3d23935f768e6357}} 
+int {\bfseries W\+A\+I\+T\+\_\+\+T\+O\+\_\+\+S\+E\+N\+D\+\_\+\+R\+E\+P\+O\+RT} = 5
+\item 
+\mbox{\Hypertarget{namespacereport__monitor_a9594b99c40cebce19430c472f825de3c}\label{namespacereport__monitor_a9594b99c40cebce19430c472f825de3c}} 
+{\bfseries email}
+\item 
+\mbox{\Hypertarget{namespacereport__monitor_aae3129412b156b001eb89d68f7260568}\label{namespacereport__monitor_aae3129412b156b001eb89d68f7260568}} 
+{\bfseries initial}
+\item 
+\mbox{\Hypertarget{namespacereport__monitor_a1dc4b001a3374e90eee423c9f4b06b4b}\label{namespacereport__monitor_a1dc4b001a3374e90eee423c9f4b06b4b}} 
+{\bfseries to}
+\item 
+\mbox{\Hypertarget{namespacereport__monitor_a4698e6a814dcb02c6a5efa1d4b4e306d}\label{namespacereport__monitor_a4698e6a814dcb02c6a5efa1d4b4e306d}} 
+def {\bfseries minutes} = \hyperlink{namespacereport__monitor_aba839cc4a115d3c05481ad49d367f567}{get\+\_\+time\+\_\+difference}(to)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module takes care of checking and sending a report by email. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacereport__monitor_ac48ed477bccc0f581f78aaed34ff934a}\label{namespacereport__monitor_ac48ed477bccc0f581f78aaed34ff934a}} 
+\index{report\+\_\+monitor@{report\+\_\+monitor}!check\+\_\+report@{check\+\_\+report}}
+\index{check\+\_\+report@{check\+\_\+report}!report\+\_\+monitor@{report\+\_\+monitor}}
+\subsubsection{\texorpdfstring{check\+\_\+report()}{check\_report()}}
+{\footnotesize\ttfamily def report\+\_\+monitor.\+check\+\_\+report (\begin{DoxyParamCaption}\item[{}]{minutes }\end{DoxyParamCaption})}
+
+
+
+This method checks if a certain time has elapsed in order to send the report by mail. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minutes} & The minutes to check \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacereport__monitor_aba839cc4a115d3c05481ad49d367f567}\label{namespacereport__monitor_aba839cc4a115d3c05481ad49d367f567}} 
+\index{report\+\_\+monitor@{report\+\_\+monitor}!get\+\_\+time\+\_\+difference@{get\+\_\+time\+\_\+difference}}
+\index{get\+\_\+time\+\_\+difference@{get\+\_\+time\+\_\+difference}!report\+\_\+monitor@{report\+\_\+monitor}}
+\subsubsection{\texorpdfstring{get\+\_\+time\+\_\+difference()}{get\_time\_difference()}}
+{\footnotesize\ttfamily def report\+\_\+monitor.\+get\+\_\+time\+\_\+difference (\begin{DoxyParamCaption}\item[{}]{to }\end{DoxyParamCaption})}
+
+
+
+This method gets the time difference between a given time and now. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em to} & The time to check \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacereport__monitor_a0319e267658eed6a0af3008734a31423}\label{namespacereport__monitor_a0319e267658eed6a0af3008734a31423}} 
+\index{report\+\_\+monitor@{report\+\_\+monitor}!send\+\_\+report@{send\+\_\+report}}
+\index{send\+\_\+report@{send\+\_\+report}!report\+\_\+monitor@{report\+\_\+monitor}}
+\subsubsection{\texorpdfstring{send\+\_\+report()}{send\_report()}}
+{\footnotesize\ttfamily def report\+\_\+monitor.\+send\+\_\+report (\begin{DoxyParamCaption}\item[{}]{email,  }\item[{}]{initial,  }\item[{}]{to }\end{DoxyParamCaption})}
+
+
+
+This method generates and sends a report. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em email} & The email address of destination. \\
+\hline
+{\em initial} & The initial time for the range from where the report will be generated \\
+\hline
+{\em to} & The end time for the range from where the report will be generated \\
+\hline
+\end{DoxyParams}

@@ -82,7 +82,7 @@ After that you will need to connect via USB your Arduino to your SBC.
 
 Five minutes after your sleep session is over you will receive an email with the report
 
-![Sample config page](https://raw.githubusercontent.com/ropa1998/SleepMonitor/master/Images/sample_email_image.png)
+![Sample email page](https://raw.githubusercontent.com/ropa1998/SleepMonitor/master/Images/sample_email_image.jpeg)
 
 
 ## Contributors

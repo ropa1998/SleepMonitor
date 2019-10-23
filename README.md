@@ -8,6 +8,9 @@ This is a simple project that uses Arduino and a Linux-based Single-Board comput
 - [Getting Started](#getting-started)
 - [Prequisites](#prequsites)
 - [Usage](#usage)
+    - [Main page](#home-page)
+    - [Reports](#reports)
+    - [Configure](#configure)
 
 ## Getting Started
 This is a list of things you will need in order to use this code

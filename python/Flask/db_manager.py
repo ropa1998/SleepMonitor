@@ -79,10 +79,7 @@ def get_sleeping_range():
             initial = row[1]
             to = row[2]
             return email, initial, to
-
-
-# conn.close()
-
+    con.close()
 
 ## This method sets the only row in 'sleeping_ranges' to the values that are passed.
 #  @param mail The email for the row.
@@ -96,3 +93,4 @@ def save_sleeping_range(mail, date_from, date_to):
         query2 = "INSERT INTO sleeping_ranges VALUES (" "\'" + mail + "\'" + "," + "\'" + date_from + "\',\'" + date_to + "\')"
         cur.execute(query1)
         cur.execute(query2)
+    con.close()

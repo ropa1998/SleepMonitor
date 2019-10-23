@@ -56,7 +56,7 @@ def configuration():
 def modify_configuration():
     save_sleeping_range(request.form.get("mail"), request.form.get('initial'), request.form.get('end'))
     flash("Your information was updated successfully")
-    return render_template('configuration.html')
+    return redirect(url_for('configuration'))
 
 
 @app.route("/", methods=['POST'])

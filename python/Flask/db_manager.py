@@ -7,6 +7,9 @@ from datetime import datetime
 
 ## This method takes an int 'n' and returns the last 'n' tuples in sensors_data.
 #  @param numSamples The 'n' last sensors entries.
+from python.Flask import date_parser
+
+
 def getHistData(numSamples):
     con = lite.connect('../sensorsData.db')
     with con:
@@ -63,8 +66,8 @@ def get_report_data(from_datetime: datetime, to_datetime: datetime):
     with con:
         cur = con.cursor()
         query = "SELECT * FROM DHT_data WHERE timestamp BETWEEN '" + from_datetime.strftime(
-            "%Y-%m-%d %H:%M:%S") + "' AND '" + to_datetime.strftime(
-            "%Y-%m-%d %H:%M:%S") + "'"
+            date_parser.STANDARD_FORMAT) + "' AND '" + to_datetime.strftime(
+            date_parser.STANDARD_FORMAT) + "'"
         return cur.execute(query).fetchall()
 
 

@@ -17,6 +17,7 @@ PASSWORD = keyring.get_password("gmail", USERNAME)
 
 yag = yagmail.SMTP(USERNAME, PASSWORD)
 
+
 ##  This method sends emails with the paramaters that are passed.
 # @param to The receiver of the email
 # @param subject The subject of the email
@@ -30,5 +31,8 @@ def send_email(to: str, subject: str, body: str, attachments: []):
         attachments=attachments
     )
 
-# send_email(receiver, body, body, ["/home/rodrigo/projects/sleepmonitor/SleepMonitor/python/Flask/templates/home
-# .html"])
+
+send_email("franz.sotoleal@ing.austral.edu.ar", SUBJECT, BODY,
+           ["/home/rodrigo/projects/sleepmonitor/SleepMonitor/python/Flask/images/report/hum_graph.png",
+            "/home/rodrigo/projects/sleepmonitor/SleepMonitor/python/Flask/images/report/light_graph.png",
+            "/home/rodrigo/projects/sleepmonitor/SleepMonitor/python/Flask/images/report/temp_graph.png"])

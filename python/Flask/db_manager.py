@@ -14,7 +14,7 @@ def getHistData(numSamples):
     con = lite.connect('../sensorsData.db')
     with con:
         curs = con.cursor()
-        curs.execute("SELECT * FROM DHT_data ORDER BY timestamp DESC LIMIT " + str(numSamples))
+        curs.execute("SELECT * FROM sensors_data ORDER BY timestamp DESC LIMIT " + str(numSamples))
         data = curs.fetchall()
         return data
 
@@ -39,7 +39,7 @@ def maxRowsTable():
     con = lite.connect('../sensorsData.db')
     with con:
         curs = con.cursor()
-        for row in curs.execute("select COUNT(temp) from  DHT_data"):
+        for row in curs.execute("select COUNT(temp) from sensors_data"):
             maxNumberRows = row[0]
         return maxNumberRows
 
@@ -49,7 +49,7 @@ def getLastData():
     con = lite.connect('../sensorsData.db')
     with con:
         curs = con.cursor()
-        for row in curs.execute("SELECT * FROM DHT_data ORDER BY timestamp DESC LIMIT 1"):
+        for row in curs.execute("SELECT * FROM sensors_data ORDER BY timestamp DESC LIMIT 1"):
             time = str(row[0])
             temp = row[1]
             hum = row[2]
@@ -65,7 +65,7 @@ def get_report_data(from_datetime: datetime, to_datetime: datetime):
     con = lite.connect('../sensorsData.db')
     with con:
         cur = con.cursor()
-        query = "SELECT * FROM DHT_data WHERE timestamp BETWEEN '" + from_datetime.strftime(
+        query = "SELECT * FROM sensors_data WHERE timestamp BETWEEN '" + from_datetime.strftime(
             date_parser.STANDARD_FORMAT) + "' AND '" + to_datetime.strftime(
             date_parser.STANDARD_FORMAT) + "'"
         return cur.execute(query).fetchall()

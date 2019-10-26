@@ -5,7 +5,7 @@ from datetime import datetime
 
 from future.backports.datetime import timedelta
 
-from python.Flask import db_manager, email_sender, graph_functions
+from SleepMonitor.python.Flask import graph_functions, email_sender, db_manager
 
 WAIT_TO_SEND_REPORT = 5
 
@@ -41,16 +41,20 @@ def check_report(minutes):
 def get_time_difference(to):
     now = datetime.now()
     to_datetime = datetime(now.year, now.month, now.day, int(to[0:2]), int(to[3:5]), 00)
-    print(str(to_datetime))
     difference = now - to_datetime
     return divmod(difference.seconds, 60)[0]
 
+
+date = datetime(1970, 1, 1)
 
 while True:
     try:
         email, initial, to = db_manager.get_sleeping_range()
         minutes = get_time_difference(to)
         if check_report(minutes):
-            send_report(email, initial, to)
+            if not (date.day == datetime.now().day):
+                print("Sending email to " + email)
+                date = datetime.now()
+                send_report(email, initial, to)
     except:
         print("No value configured in configuration!")

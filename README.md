@@ -19,6 +19,7 @@ This is a list of things you will need in order to use this code
     * An LDR
     * A 220 Ohms resistor. You can change this but you would need to modify some Arduino source code.
     * Implementing this circuit
+    
         ![Circuit](https://raw.githubusercontent.com/ropa1998/SleepMonitor/master/Images/Start%20Simulating.png) 
  *  A Linux-Based Single-Board Computer (We recommend a Raspberry Pi and Raspbian)
 ## Prequsites

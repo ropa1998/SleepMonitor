@@ -31,7 +31,7 @@ to = datetime.datetime.now()
 @app.route("/")
 ## This method renders the main page, index.docs.
 def index():
-    return render_template('index.docs')
+    return render_template('index.html')
 
 
 @app.route("/configuration")
@@ -48,7 +48,7 @@ def configuration():
         'initial': start,
         'end': end,
     }
-    return render_template('configuration.docs', **template_data)
+    return render_template('configuration.html', **template_data)
 
 
 @app.route("/configuration", methods=['POST'])
@@ -84,7 +84,7 @@ def home():
         'light': light,
         'numSamples': numSamples,
     }
-    return render_template('home.docs', **template_data)
+    return render_template('home.html', **template_data)
 
 
 @app.route('/home', methods=['POST'])
@@ -105,13 +105,13 @@ def my_form_post():
         'light': light,
         'numSamples': numSamples,
     }
-    return render_template('home.docs', **template_data)
+    return render_template('home.html', **template_data)
 
 
 @app.route('/report_generator')
 ## This method renders the report generator screen.
 def generate_a_report():
-    return render_template('report_generator.docs')
+    return render_template('report_generator.html')
 
 
 @app.route('/report_generator', methods=['POST'])
@@ -128,7 +128,7 @@ def generate_post_report():
     }
 
     print(template_data)
-    return render_template('report.docs', **template_data)
+    return render_template('report.html', **template_data)
 
 
 @app.route('/plot/temp')

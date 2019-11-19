@@ -23,7 +23,7 @@ This is a list of things you will need in order to use this code
         ![Circuit](https://raw.githubusercontent.com/ropa1998/SleepMonitor/master/Images/Start%20Simulating.png) 
  *  A Linux-Based Single-Board Computer (We recommend a Raspberry Pi and Raspbian)
 ## Prequsites
-First of all, you need to install the software in the Arduino. You can do this in any way you prefer (IDE or console). The file is called 'unified_sensors_sm.ino'.
+First of all, you need to install the software in the Arduino. You can do this in any way you prefer (IDE or console).
 
 The code that must be installed is `unifiend_sensors_sm.ino`. Remember to have the circuit configuration as shown before. Otherwise you will need to change the code.
  

@@ -35,7 +35,10 @@
     <div style="height:10px"></div>
 
     <p class="lead"> Last sensors reading: {{ time }}
-        <button type="button" class="btn btn-outline-primary" href="/home">REFRESH</button>
+        <!--        <button type="submit" class="btn btn-outline-primary" value="/home">REFRESH</button>-->
+    <form action="/home">
+        <input type="submit" value="Refresh"/>
+    </form>
     </p>
 
     <div style="height:25px"></div>

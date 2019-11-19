@@ -21,7 +21,7 @@ def save_data(read_list):
         cur.execute(query)
 
 
-ser = serial.Serial('/dev/ttyUSB1', 9600)
+ser = serial.Serial('/dev/ttyUSB0', 9600)
 
 while True:
     read_serial = str(ser.readline().rstrip()).replace("'", "").replace("b", "")

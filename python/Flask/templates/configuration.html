@@ -10,85 +10,91 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">Sleep Monitor</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/report_generator">Reports<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Log out</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-<div class="col">
-    <div class="col">
-        <div style="height:20px"></div>
-        <h3>Edit sleeping configurations</h3>
-        <p>Enter your sleeping time to notify you with a report</p>
-        <p> Your current configuration is: email {{ email }},  from {{ initial }},  to {{ end }}</p>
-        <div style="height:10px"></div>
-    </div>
-
-    <div class="col">
-        <form name="sleep_range" method="POST">
-            <div class="form-row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="formGroupExampleInput2">Email: </label>
-                        <input name="mail" type="email" class="form-control" id="email" placeholder="example@mail.com">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Time from: </label>
-                        <input name="initial" type="time" class="form-control" id="formGroupExampleInput"
-                               placeholder="Example input">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="formGroupExampleInput2">Time to: </label>
-                        <input name="end" type="time" class="form-control" id="formGroupExampleInput2"
-                               placeholder="Another input">
-                    </div>
-                </div>
-            </div>
-            <div style="width:10px"></div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <div style="height:15px"></div>
-    <div class="alert alert-success" role="alert" style="display:inline-block;">
-        {{ messages[0]|capitalize }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+<div class="container">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Sleep Monitor</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/report_generator">Reports<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="configuration">
+        <div class="col">
+        <div class="col">
+            <div style="height:20px"></div>
+            <h3>Edit sleeping configurations</h3>
+            <p>Enter your sleeping time to notify you with a report</p>
+            <p> Your current configuration is: email {{ email }}, from {{ initial }}, to {{ end }}</p>
+            <div style="height:10px"></div>
+        </div>
+
+        <div class="col">
+            <form name="sleep_range" method="POST">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Email: </label>
+                            <input name="mail" type="email" class="form-control" id="email"
+                                   placeholder="example@mail.com">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Time from: </label>
+                            <input name="initial" type="time" class="form-control" id="formGroupExampleInput"
+                                   placeholder="Example input">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Time to: </label>
+                            <input name="end" type="time" class="form-control" id="formGroupExampleInput2"
+                                   placeholder="Another input">
+                        </div>
+                    </div>
+                </div>
+                <div style="width:10px"></div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div style="height:15px"></div>
+        <div class="alert alert-success" role="alert" style="display:inline-block;">
+            {{ messages[0]|capitalize }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+        {% endwith %}
     </div>
-    {% endif %}
-    {% endwith %}
+    </div>
+
+    <footer class="text-muted bg-light">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>©2019 Sleepmonitor Inc.</p>
+        </div>
+    </footer>
 </div>
 
-<footer class="text-muted bg-light">
-    <div class="container">
-        <p class="float-right">
-            <a href="#">Back to top</a>
-        </p>
-        <p>©2019 Sleepmonitor Inc.</p>
-    </div>
-</footer>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -105,6 +111,7 @@
     console.log(document.sleep_range.initial.value);
     console.log(document.sleep_range.end.value);
     }
+
 
 
 

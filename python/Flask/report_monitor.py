@@ -26,7 +26,7 @@ def send_report(email, initial, to):
     hum_graph = os.path.abspath("images/report/hum_graph.png")
     light_graph = os.path.abspath("images/report/light_graph.png")
     temp_graph = os.path.abspath("images/report/temp_graph.png")
-    email_sender.send_email(email, email_sender.BODY, email_sender.BODY,
+    email_sender.send_email(email, email_sender.SUBJECT, email_sender.BODY,
                             [hum_graph, light_graph, temp_graph])
 
 

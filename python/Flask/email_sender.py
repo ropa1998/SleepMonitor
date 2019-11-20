@@ -32,7 +32,7 @@ def send_email(to: str, subject: str, body: str, attachments: []):
     )
 
 
-send_email("franz.sotoleal@ing.austral.edu.ar", SUBJECT, BODY,
-           ["/home/rodrigo/projects/sleepmonitor/SleepMonitor/python/Flask/images/report/hum_graph.png",
-            "/home/rodrigo/projects/sleepmonitor/SleepMonitor/python/Flask/images/report/light_graph.png",
-            "/home/rodrigo/projects/sleepmonitor/SleepMonitor/python/Flask/images/report/temp_graph.png"])
+# send_email("franz.sotoleal@ing.austral.edu.ar", SUBJECT, BODY,
+#            ["/home/rodrigo/projects/sleepmonitor/SleepMonitor/python/Flask/images/report/hum_graph.png",
+#             "/home/rodrigo/projects/sleepmonitor/SleepMonitor/python/Flask/images/report/light_graph.png",
+#             "/home/rodrigo/projects/sleepmonitor/SleepMonitor/python/Flask/images/report/temp_graph.png"])

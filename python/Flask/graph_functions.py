@@ -3,8 +3,8 @@
 
 import matplotlib.pyplot as plt
 
-from SleepMonitor.python.Flask import date_parser, db_manager
-from SleepMonitor.python.Flask.db_manager import getDataAsTuple, getHistData
+from python.Flask import date_parser, db_manager
+from python.Flask.db_manager import getDataAsTuple, getHistData
 
 TEMP_GREEN_LOW = 16
 TEMP_GREEN_HIGH = 20
@@ -24,15 +24,15 @@ LIGHT_YELLOW_HIGH = 10
 LIGHT_RED_LOW = 10
 LIGHT_RED_HIGH = 20
 
-HUM_GREEN_LOW = 45
-HUM_GREEN_HIGH = 55
-HUM_INFERIOR_YELLOW_LOW = 40
-HUM_INFERIOR_YELLOW_HIGH = 45
-HUM_SUPERIOR_YELLOW_LOW = 55
-HUM_SUPERIOR_YELLOW_HIGH = 60
-HUM_INFERIOR_RED_LOW = 30
-HUM_INFERIOR_RED_HIGH = 40
-HUM_SUPERIOR_RED_LOW = 60
+HUM_GREEN_LOW = 30
+HUM_GREEN_HIGH = 50
+HUM_INFERIOR_YELLOW_LOW = 25
+HUM_INFERIOR_YELLOW_HIGH = 30
+HUM_SUPERIOR_YELLOW_LOW = 50
+HUM_SUPERIOR_YELLOW_HIGH = 55
+HUM_INFERIOR_RED_LOW = 0
+HUM_INFERIOR_RED_HIGH = 25
+HUM_SUPERIOR_RED_LOW = 55
 HUM_SUPERIOR_RED_HIGH = 100
 
 GREEN_ALPHA = 0.3

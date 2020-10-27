@@ -1,6 +1,6 @@
 cffi==1.13.0
 Click==7.0
-cryptography==2.8
+cryptography==3.2
 cycler==0.10.0
 DateTime==4.3
 entrypoints==0.3

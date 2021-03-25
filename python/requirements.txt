@@ -12,7 +12,7 @@ numpy==1.17.2
 pyparsing==2.4.2
 pyserial==3.4
 python-dateutil==2.8.0
-PyYAML==5.1.2
+PyYAML==5.4
 serial==0.0.97
 six==1.12.0
 Werkzeug==0.16.0
